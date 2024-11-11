@@ -23,4 +23,6 @@ public class User {
 
     @Column(length = 256)
     private String phone;
+
+    public void setNickname(String nickname) {this.name = nickname;}
 }
