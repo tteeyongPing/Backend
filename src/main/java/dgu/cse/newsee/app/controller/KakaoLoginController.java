@@ -9,11 +9,13 @@ import dgu.cse.newsee.service.kakao.KakaoLoginService;
 import dgu.cse.newsee.service.user.UserAccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "🍫 카카오", description = "카카오 관련 API")
 @RequestMapping("api/kakao")
 public class KakaoLoginController {
 
@@ -21,13 +23,13 @@ public class KakaoLoginController {
     private final UserAccountService userAccountService;
     private final JWTUtil jwtUtil;
 
-    @Operation(summary = "인가코드 발급 API")
+    @Operation(summary = "[사용안함]")
     @GetMapping("/callback")
     public ApiResponse<?> callback(@RequestParam("code") String code){
         return ApiResponse.onSuccess(Status.KAKAO_CODE_SUCCESS, code);
     }
 
-    @Operation(summary = "프론트로부터 카카오 인가코드 전달받기")
+    @Operation(summary = "로그인")
     @Parameter(name = "code", description = "카카오에서 받은 인카코드, RequestParam")
     @PostMapping("/login")
     public ApiResponse<?> kakaoLoginCode(@RequestParam("code") String code) {
