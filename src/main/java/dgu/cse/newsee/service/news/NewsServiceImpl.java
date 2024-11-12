@@ -29,12 +29,18 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public String getNewsShorts(Long newsId) {
-        Optional<News> news = newsRepository.findById(newsId);
-        if(news.isEmpty()) {throw new NewsException.NewsNonExistsException("존재하지 않는 뉴스입니다.");}
-        String shorts = news.get().getShorts();
+        News news = getNewsById(newsId);
+        String shorts = news.getShorts();
         if(shorts == null){
 
         }
         return shorts;
+    }
+
+    @Override
+    public News getNewsById(Long newsId) {
+        Optional<News> news = newsRepository.findById(newsId);
+        if(news.isEmpty()) {throw new NewsException.NewsNonExistsException("존재하지 않는 뉴스입니다.");}
+        return news.get();
     }
 }

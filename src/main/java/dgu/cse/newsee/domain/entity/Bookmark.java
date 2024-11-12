@@ -21,4 +21,11 @@ public class Bookmark {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "news_id")
     private News news;
+
+    public static Bookmark createBookmark(User user, News news) {
+        return Bookmark.builder()
+                .user(user)
+                .news(news)
+                .build();
+    }
 }

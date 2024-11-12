@@ -35,12 +35,17 @@ public class UserAccountServiceImpl implements UserAccountService{
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public Optional<User> findKakaoUserByEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        return user;
     }
 
     @Override
-    public Optional<User> findById(Long id) { return userRepository.findById(id); }
+    public Optional<User> findById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) { throw new UserException.UserNonExistsException("존재하지 않는 회원입니다."); }
+        return user;
+    }
 
     @Override
     public Long getUserIdFromToken(String token) {
