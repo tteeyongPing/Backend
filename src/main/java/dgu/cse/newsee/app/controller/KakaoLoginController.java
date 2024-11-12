@@ -35,8 +35,8 @@ public class KakaoLoginController {
     public ApiResponse<?> kakaoLoginCode(@RequestParam("code") String code) {
         String token = kakaoLoginService.getKakaoToken(code);
         KakaoLoginDto.KakaoUserInfoDto kakaoUserInfoDto = kakaoLoginService.getKakaoUserInfo(token);
-        if(userAccountService.findByEmail(kakaoUserInfoDto.getEmail()).isEmpty()) userAccountService.saveKakaoUser(kakaoUserInfoDto.getEmail());
-        User user = userAccountService.findByEmail(kakaoUserInfoDto.getEmail()).get();
+        if(userAccountService.findKakaoUserByEmail(kakaoUserInfoDto.getEmail()).isEmpty()) userAccountService.saveKakaoUser(kakaoUserInfoDto.getEmail());
+        User user = userAccountService.findKakaoUserByEmail(kakaoUserInfoDto.getEmail()).get();
 
         String jwtToken = jwtUtil.createJwt(user.getId(), 3600000L);
         KakaoLoginDto.LoginResponseDto dto = new KakaoLoginDto.LoginResponseDto().builder()
