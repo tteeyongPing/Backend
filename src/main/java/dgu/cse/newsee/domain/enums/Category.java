@@ -1,4 +1,5 @@
 package dgu.cse.newsee.domain.enums;
+import dgu.cse.newsee.apiPayload.exception.NewsException;
 
 public enum Category {
     정치(1),
@@ -22,14 +23,12 @@ public enum Category {
         return id;
     }
 
-    public static Category fromId(int id) {
+    public static String fromId(int id) {
         for (Category category : values()) {
             if (category.getId() == id) {
-                return category;
+                return category.name();
             }
         }
-        throw new IllegalArgumentException("Invalid Category ID: " + id);
+        throw new NewsException.CategoryNonExistsException("존재하지 않는 카테고리 ID 입니다.");
     }
-
-
 }

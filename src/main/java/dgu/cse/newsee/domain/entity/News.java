@@ -16,6 +16,9 @@ public class News {
     private Long id;
 
     @Column(nullable = false, length = 256)
+    private String category;
+
+    @Column(nullable = false, length = 256)
     private String title;
 
     @Column(nullable = false, length = 256)
@@ -30,7 +33,6 @@ public class News {
     @Column(nullable = false)
     private String shorts;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Category category;
+    @Column(nullable = false, length = 256)
+    private String reporter;
 }
