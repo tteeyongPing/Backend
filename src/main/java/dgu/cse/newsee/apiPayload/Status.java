@@ -35,7 +35,12 @@ public enum Status {
     BOOKMARK_LIST_SUCCESS("200", "SUCCESS", "북마크 목록을 가져왔습니다."),
     BOOKMARK_NEWS_NON_EXISTS("404", "FAILURE", "북마크에 저장된 뉴스가 없습니다."),
     BOOKMARK_ADD_SUCCESS("200", "SUCCESS", "해당 뉴스를 북마크에 추가했습니다."),
-    BOOKMARK_DELETE_SUCCESS("200", "SUCCESS", "해당 뉴스를 북마크에서 삭제했습니다.");
+    BOOKMARK_DELETE_SUCCESS("200", "SUCCESS", "해당 뉴스를 북마크에서 삭제했습니다."),
+
+    // MEMO 관련
+    MEMO_UPDATE_SUCCESS("200", "SUCCESS", "메모를 업데이트했습니다."),
+    MEMO_DELETE_SUCCESS("200", "SUCCESS", "메모를 삭제했습니다."),
+    MEMO_NOT_FOUND("404", "FAILURE", "메모가 존재하지 않습니다.");
 
     private final String code;
     private final String result;
