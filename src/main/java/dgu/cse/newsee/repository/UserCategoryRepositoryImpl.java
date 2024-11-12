@@ -19,8 +19,8 @@ public class UserCategoryRepositoryImpl implements UserCategoryRepository {
 
     @Override
     public List<Category> findCategoriesByUserId(Long userId) {
-        String sql = "SELECT category_id FROM user_category WHERE user_id = ?";
-        return jdbcTemplate.query(sql, new Object[]{userId}, (rs, rowNum) -> Category.fromId(rs.getInt("category_id")));
+        String sql = "SELECT category FROM user_category WHERE user_id = ?";
+        return jdbcTemplate.query(sql, new Object[]{userId}, (rs, rowNum) -> Category.fromName(rs.getString("category")));
     }
 
     @Override

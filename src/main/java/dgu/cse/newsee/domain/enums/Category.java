@@ -31,4 +31,13 @@ public enum Category {
         }
         throw new NewsException.CategoryNonExistsException("존재하지 않는 카테고리 ID 입니다.");
     }
+
+    public static Category fromName(String name) {
+        for (Category category : values()) {
+            if (category.name().equals(name)) {
+                return category;
+            }
+        }
+        throw new NewsException.CategoryNonExistsException("존재하지 않는 카테고리 이름입니다.");
+    }
 }
