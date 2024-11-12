@@ -21,6 +21,7 @@ public class NewsQueryRepositoryImpl implements NewsQueryRepository {
         return jpaQueryFactory
                 .selectFrom(news)
                 .where(news.category.eq(category))
+                .limit(10)
                 .fetch();
     }
 }
