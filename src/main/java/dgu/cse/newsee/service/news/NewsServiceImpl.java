@@ -37,4 +37,10 @@ public class NewsServiceImpl implements NewsService {
         }
         return shorts;
     }
+
+    @Override
+    public List<News> getNewsListAll() {
+        List<News> newsList = newsQueryRepository.findNewsListAll();
+        return newsList;
+    }
 }

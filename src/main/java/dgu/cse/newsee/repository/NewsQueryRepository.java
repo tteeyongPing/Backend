@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface NewsQueryRepository {
     List<News> findNewsListByCategory(String category);
+    List<News> findNewsListAll();
 }

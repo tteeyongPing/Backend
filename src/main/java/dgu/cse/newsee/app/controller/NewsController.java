@@ -22,6 +22,13 @@ public class NewsController {
 
     private final NewsService newsService;
 
+    @Operation(summary = "전체 뉴스 가지고오기")
+    @GetMapping("/list/all")
+    public ApiResponse<?> getNewsListAll(){
+        List<News> newsList = newsService.getNewsListAll();
+        return ApiResponse.onSuccess(Status.READ_NEWS_SUCCESS, newsList);
+    }
+
     @Operation(summary = "카테고리 별로 뉴스 가지고오기")
     @GetMapping("/list")
     public ApiResponse<?> getNewsList(@RequestParam(value = "category") int categoryId){
