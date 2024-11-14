@@ -1,5 +1,6 @@
 package dgu.cse.newsee.service.alarm;
 
+import dgu.cse.newsee.apiPayload.exception.AlarmException;
 import dgu.cse.newsee.app.dto.AlarmDto;
 import dgu.cse.newsee.domain.entity.Alarm;
 import dgu.cse.newsee.repository.AlarmRepository;
@@ -24,7 +25,7 @@ public class AlarmServiceImpl implements AlarmService {
         Long userId = userAccountService.getUserIdFromToken(token);
         List<Alarm> alarms = alarmRepository.findByUserId(userId);
         if (alarms.isEmpty()) {
-            throw new IllegalArgumentException("등록된 알림이 없습니다.");
+            throw new AlarmException.AlarmNonExistsException("등록된 알림이 없습니다.");
         }
         return alarms.stream()
                 .map(alarm -> new AlarmDto(alarm.getId(), alarm.getPeriod(), alarm.getUserId(), alarm.isActive()))
@@ -42,7 +43,7 @@ public class AlarmServiceImpl implements AlarmService {
     public void editAlarm(String token, AlarmDto alarmDto) {
         Long userId = userAccountService.getUserIdFromToken(token);
         Alarm alarm = alarmRepository.findById(alarmDto.getAlarmId())
-                .orElseThrow(() -> new IllegalArgumentException("해당 알림이 존재하지 않습니다."));
+                .orElseThrow(() -> new AlarmException.AlarmNonExistsException("해당 알림이 없습니다."));
         if (!alarm.getUserId().equals(userId)) {
             throw new SecurityException("수정 권한이 없습니다.");
         }
@@ -55,7 +56,7 @@ public class AlarmServiceImpl implements AlarmService {
     public void removeAlarm(String token, Long alarmId) {
         Long userId = userAccountService.getUserIdFromToken(token);
         Alarm alarm = alarmRepository.findById(alarmId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 알림이 존재하지 않습니다."));
+                .orElseThrow(() -> new AlarmException.AlarmNonExistsException("해당 알림이 없습니다."));
         if (!alarm.getUserId().equals(userId)) {
             throw new SecurityException("삭제 권한이 없습니다.");
         }

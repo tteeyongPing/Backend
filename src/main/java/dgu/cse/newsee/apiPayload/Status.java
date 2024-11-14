@@ -53,11 +53,13 @@ public enum Status {
     CATEGORY_NOT_FOUND("404", "FAILURE", "카테고리가 존재하지 않습니다."),
 
     //alarm 관련
-    ALARM_GET_SUCCESS("200", "SUCCESS", "내 관심분야를 가지고 왔습니다."),
+    ALARM_GET_SUCCESS("200", "SUCCESS", "내 알림을 가지고 왔습니다."),
     ALARM_CREATE_SUCCESS("200", "SUCCESS", "새로운 알림을 설정했습니다."),
     ALARM_EDIT_SUCCESS("200", "SUCCESS", "새로운 알림을 설정했습니다."),
-    ALARM_REMOVE_SUCCESS("200", "SUCCESS", "해당 알림을 삭제했습니다.");
-
+    ALARM_REMOVE_SUCCESS("200", "SUCCESS", "해당 알림을 삭제했습니다."),
+    ALARM_NON_EXISTS("404", "FAILURE", "존재하지 않는 알림입니다."),
+    ALARM_CREATION_FAILED("500", "FAILURE", "알림 생성에 실패했습니다."),
+    ALARM_UPDATE_UNAUTHORIZED("403", "FAILURE", "알림을 업데이트할 권한이 없습니다.");
     private final String code;
     private final String result;
     private final String message;
