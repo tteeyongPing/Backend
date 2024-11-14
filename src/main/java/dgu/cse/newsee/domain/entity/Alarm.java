@@ -5,6 +5,7 @@ import lombok.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Builder
 @Table(name = "Alarm")
 public class Alarm {
@@ -22,12 +23,7 @@ public class Alarm {
     private boolean active;
 
 
-    public Alarm(Long id, Long userId, String period, boolean active) {
-        this.id = id;
-        this.userId = userId;
-        this.period = period;
-        this.active = active;
-    }
+
     public Alarm(Long userId, String period, boolean active){
         this.userId = userId;
         this.period = period;
