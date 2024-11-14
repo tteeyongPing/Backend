@@ -2,6 +2,7 @@ package dgu.cse.newsee.apiPayload;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -49,7 +50,13 @@ public enum Status {
     CATEGORY_LIST_SUCCESS("200", "SUCCESS", "관심분야를 가지고 왔습니다."),
     CATEGORY_MY_SUCCESS("200", "SUCCESS", "내 관심분야를 가지고 왔습니다."),
     CATEGORY_EDIT_SUCCESS("200", "SUCCESS", "내 관심분야가 수정되었습니다."),
-    CATEGORY_NOT_FOUND("404", "FAILURE", "카테고리가 존재하지 않습니다.");
+    CATEGORY_NOT_FOUND("404", "FAILURE", "카테고리가 존재하지 않습니다."),
+
+    //alarm 관련
+    ALARM_GET_SUCCESS("200", "SUCCESS", "내 관심분야를 가지고 왔습니다."),
+    ALARM_CREATE_SUCCESS("200", "SUCCESS", "새로운 알림을 설정했습니다."),
+    ALARM_EDIT_SUCCESS("200", "SUCCESS", "새로운 알림을 설정했습니다."),
+    ALARM_REMOVE_SUCCESS("200", "SUCCESS", "해당 알림을 삭제했습니다.");
 
     private final String code;
     private final String result;
