@@ -38,6 +38,11 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    public List<News> getNewsListAll() {
+        List<News> newsList = newsQueryRepository.findNewsListAll();
+        return newsList;
+    }
+    @Override
     public News getNewsById(Long newsId) {
         Optional<News> news = newsRepository.findById(newsId);
         if(news.isEmpty()) {throw new NewsException.NewsNonExistsException("존재하지 않는 뉴스입니다.");}
