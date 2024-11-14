@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface UserAccountService {
     Optional<User> saveKakaoUser(String email);
-    Optional<User> findByEmail(String email);
+    Optional<User> findKakaoUserByEmail(String email);
     Optional<User> findById(Long id);
     Long getUserIdFromToken(String token);
     String getActualTokenFromToken(String token);

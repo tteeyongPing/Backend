@@ -8,8 +8,9 @@ import lombok.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name = "bookmark")
-public class Bookmark {
+@Table(name = "news_memo")
+public class NewsMemo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,10 +23,10 @@ public class Bookmark {
     @JoinColumn(name = "news_id")
     private News news;
 
-    public static Bookmark createBookmark(User user, News news) {
-        return Bookmark.builder()
-                .user(user)
-                .news(news)
-                .build();
+    @Column(nullable = true)
+    private String memo;
+
+    public void setMemo(String memo) {
+        this.memo = memo;
     }
 }
