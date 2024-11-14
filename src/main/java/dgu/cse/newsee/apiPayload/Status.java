@@ -48,8 +48,8 @@ public enum Status {
     //Category 관련
     CATEGORY_LIST_SUCCESS("200", "SUCCESS", "관심분야를 가지고 왔습니다."),
     CATEGORY_MY_SUCCESS("200", "SUCCESS", "내 관심분야를 가지고 왔습니다."),
-    CATEGORY_EDIT_SUCCESS("200", "SUCCESS", "내 관심분야가 수정되었습니다.");
-
+    CATEGORY_EDIT_SUCCESS("200", "SUCCESS", "내 관심분야가 수정되었습니다."),
+    CATEGORY_NOT_FOUND("404", "FAILURE", "카테고리가 존재하지 않습니다.");
 
     private final String code;
     private final String result;
