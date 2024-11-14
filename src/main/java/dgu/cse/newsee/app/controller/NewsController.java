@@ -33,7 +33,7 @@ public class NewsController {
     @GetMapping("/list")
     public ApiResponse<?> getNewsList(@RequestParam(value = "category") int categoryId){
         List<News> newsList = newsService.getNewsList(categoryId);
-        return ApiResponse.onSuccess(Status.READ_NEWS_SUCCESS, newsList);
+        return ApiResponse.onSuccess(Status.READ_CATEGORY_NEWS_SUCCESS, newsList);
     }
 
     @Operation(summary = "뉴스의 요약본 가지고오기")

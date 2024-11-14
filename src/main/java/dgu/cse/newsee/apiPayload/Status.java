@@ -28,7 +28,8 @@ public enum Status {
     // NEWS 관련
     NEWS_NON_EXISTS("404", "FAILURE", "존재하지 않는 뉴스입니다."),
     CATEGORY_NON_EXISTS("404", "FAILURE", "존재하지 않는 카테고리 ID 입니다."),
-    READ_NEWS_SUCCESS("200", "SUCCESS", "해당 카테고리의 뉴스를 읽었습니다."),
+    READ_NEWS_SUCCESS("200", "SUCCESS", "전체 뉴스를 읽었습니다."),
+    READ_CATEGORY_NEWS_SUCCESS("200", "SUCCESS", "해당 카테고리의 뉴스를 읽었습니다."),
     READ_NEWS_ALL_SUCCESS("200", "SUCCESS", "전체 뉴스를 읽었습니다."),
     READ_NEWS_SHORTS_SUCCESS("200", "SUCCESS", "해당 뉴스의 요약본입니다.");
 
