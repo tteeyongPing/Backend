@@ -1,11 +1,15 @@
 package dgu.cse.newsee.app.dto;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class AlarmDto {
     private Long alarmId;
     private String period;
+    private Long userId;
     private boolean active;
 
-    // Getters and Setters
+
     public Long getAlarmId() {
         return alarmId;
     }
@@ -20,6 +24,14 @@ public class AlarmDto {
 
     public void setPeriod(String period) {
         this.period = period;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public boolean isActive() {
