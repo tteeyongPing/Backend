@@ -7,7 +7,6 @@ import dgu.cse.newsee.service.category.CategoryService;
 import dgu.cse.newsee.domain.enums.Category;
 import dgu.cse.newsee.app.dto.CategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
