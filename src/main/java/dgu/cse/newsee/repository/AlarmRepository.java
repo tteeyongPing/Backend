@@ -1,6 +1,5 @@
 package dgu.cse.newsee.repository;
 
-import dgu.cse.newsee.app.dto.AlarmDto;
 import dgu.cse.newsee.domain.entity.Alarm;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
