@@ -26,7 +26,7 @@ public class ApiResponse<T> {
     }
 
     // 실패한 경우 응답 생성
-    public static <T> ApiResponse<T> onFailure(Status status, T data){
-        return new ApiResponse<>(status.getCode(), status.getResult(), status.getMessage(), data);
+    public static <T> ApiResponse<T> onFailure(Status status, String message){
+        return new ApiResponse<>(status.getCode(), status.getResult(), message, null);
     }
 }
