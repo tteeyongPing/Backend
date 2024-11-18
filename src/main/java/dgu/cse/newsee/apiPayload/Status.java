@@ -64,7 +64,12 @@ public enum Status {
     NEWS_SEARCH_SUCCESS("200", "SUCCESS", "뉴스를 검색했습니다."),
     PLAYLIST_SEARCH_SUCCESS("200", "SUCCESS", "플레이리스트를 검색했습니다."),
     NEWS_SEARCH_FAILURE("404", "FAILURE", "뉴스 검색 결과가 없습니다."),
-    PLAYLIST_SEARCH_FAILURE("404", "FAILURE", "플레이리스트 검색 결과가 없습니다.");
+    PLAYLIST_SEARCH_FAILURE("404", "FAILURE", "플레이리스트 검색 결과가 없습니다."),
+
+    //Category관련
+    CATEGORY_LIST_SUCCESS("200", "SUCCESS", "모든 관심분야 리스트를 가지고 왔습니다."),
+    CATEGORY_MY_SUCCESS("200", "SUCCESS", "내 관심분야를 가지고 왔습니다."),
+    CATEGORY_EDIT_SUCCESS("200", "SUCCESS", "내 관심분야가 수정되었습니다.");
 
 
 
