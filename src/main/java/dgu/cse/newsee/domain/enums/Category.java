@@ -1,37 +1,55 @@
 package dgu.cse.newsee.domain.enums;
+
 import dgu.cse.newsee.apiPayload.exception.NewsException;
 
 public enum Category {
-    정치(1),
-    경제(2),
-    사회(3),
-    국제(4),
-    스포츠(5),
-    문화예술(6),
-    과학기술(7),
-    건강의료(8),
-    연예오락(9),
-    환경(10);
+    경제(1, "business"),
+    연예오락(2, "entertainment"),
+    사회(3, "general"),
+    건강의료(4, "health"),
+    과학기술(5, "science"),
+    스포츠(6, "sports"),
+    문화예술(7, "technology");
 
     private final int id;
+    private final String english;
 
-    Category(int id) {
+    Category(int id, String english) {
         this.id = id;
+        this.english = english;
     }
 
     public int getId() {
         return id;
     }
 
-    public static String fromId(int id) {
+    public String getEnglish() {
+        return english;
+    }
+
+    // ID로 카테고리 이름 반환
+    public static String fromId(String id) {
         for (Category category : values()) {
-            if (category.getId() == id) {
+            if (String.valueOf(category.getId()).equals(id)) {
                 return category.name();
             }
         }
         throw new NewsException.CategoryNonExistsException("존재하지 않는 카테고리 ID 입니다.");
     }
 
+
+    public static Category fromStringId(String id) {
+        for (Category category : values()) {
+            if (String.valueOf(category.getId()).equals(id))  {
+                return category;
+            }
+        }
+        throw new NewsException.CategoryNonExistsException("존재하지 않는 카테고리 ID 입니다.");
+    }
+
+
+
+    // 한글 이름으로 카테고리 반환
     public static Category fromName(String name) {
         for (Category category : values()) {
             if (category.name().equals(name)) {
@@ -40,4 +58,25 @@ public enum Category {
         }
         throw new NewsException.CategoryNonExistsException("존재하지 않는 카테고리 이름입니다.");
     }
+
+    // 영어 이름으로 한글 반환
+    public static String getKoreanByEnglish(String english) {
+        for (Category category : Category.values()) {
+            if (category.english.equalsIgnoreCase(english)) {
+                return category.name(); // 한글 카테고리 이름 반환
+            }
+        }
+        throw new NewsException.CategoryNonExistsException("존재하지 않는 카테고리 영어 이름입니다.");
+    }
+
+    // 영어 이름으로 카테고리 반환
+    public static Category fromEnglish(String english) {
+        for (Category category : Category.values()) {
+            if (category.english.equalsIgnoreCase(english)) {
+                return category;
+            }
+        }
+        throw new NewsException.CategoryNonExistsException("존재하지 않는 카테고리 영어 이름입니다.");
+    }
+
 }

@@ -33,6 +33,7 @@ public class CategoryController {
                 .collect(Collectors.toList());
 
         return ApiResponse.onSuccess(Status.CATEGORY_LIST_SUCCESS, data);
+
     }
 
     // 내 관심분야 가져오기
@@ -48,10 +49,17 @@ public class CategoryController {
 
     // 내 관심분야 등록/수정하기
     @PatchMapping("/edit")
-    public ApiResponse<Object> editMyCategories(@RequestParam Long userId, @RequestBody List<String> categoryNames) {
-        List<Category> categories = categoryNames.stream().map(Category::fromName).toList();
-        categoryService.updateUserCategories(userId, categories);
+    public ApiResponse<Object> editMyCategories(@RequestParam Long userId, @RequestBody List<String> categoryIds) {
+        // categoryIds를 Category 객체로 변환
+        List<Category> categories = categoryIds.stream()
+                .map(Category::fromStringId) // fromId 메서드가 String을 받아 Category 반환
+                .toList();
 
+        // Service 호출
+        categoryService.updateUserCategories(userId, categories);
         return ApiResponse.onSuccess(Status.CATEGORY_EDIT_SUCCESS, null);
     }
+
+
+
 }

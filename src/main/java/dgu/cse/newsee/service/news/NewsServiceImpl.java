@@ -5,10 +5,11 @@ import dgu.cse.newsee.domain.entity.News;
 import dgu.cse.newsee.domain.enums.Category;
 import dgu.cse.newsee.repository.NewsQueryRepository;
 import dgu.cse.newsee.repository.NewsRepository;
+import dgu.cse.newsee.repository.UserCategoryRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import dgu.cse.newsee.repository.UserCategoryRepository;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,11 +20,11 @@ public class NewsServiceImpl implements NewsService {
 
     private final NewsQueryRepository newsQueryRepository;
     private final NewsRepository newsRepository;
+    private final UserCategoryRepository userCategoryRepository;
 
     @Override
-    public List<News> getNewsList(int categoryId) {
-        String category = Category.fromId(categoryId);
-        List<News> newsList = newsQueryRepository.findNewsListByCategory(category);
+    public List<News> getNewsList(String categoryId) {
+        List<News> newsList = newsQueryRepository.findNewsListByCategory(categoryId);
         return newsList;
     }
 

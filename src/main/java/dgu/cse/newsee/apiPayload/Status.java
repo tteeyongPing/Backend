@@ -62,6 +62,12 @@ public enum Status {
     SUBSCRIBE_MY_PLAYLIST("403", "FAILURE", "내 플레이리스트를 구독할 수 없습니다."),
     ALREADY_SUBSCRIBED("409", "FAILURE", "이미 구독중인 플레이리스트입니다."),
 
+    //serach관련
+    NEWS_SEARCH_SUCCESS("200", "SUCCESS", "뉴스를 검색했습니다."),
+    PLAYLIST_SEARCH_SUCCESS("200", "SUCCESS", "플레이리스트를 검색했습니다."),
+    NEWS_SEARCH_FAILURE("404", "FAILURE", "뉴스 검색 결과가 없습니다."),
+    PLAYLIST_SEARCH_FAILURE("404", "FAILURE", "플레이리스트 검색 결과가 없습니다."),
+
     //Category 관련
     CATEGORY_LIST_SUCCESS("200", "SUCCESS", "관심분야를 가지고 왔습니다."),
     CATEGORY_MY_SUCCESS("200", "SUCCESS", "내 관심분야를 가지고 왔습니다."),

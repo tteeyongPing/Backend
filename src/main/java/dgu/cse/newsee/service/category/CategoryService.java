@@ -30,7 +30,14 @@ public class CategoryService {
 
     // 사용자의 관심분야 수정하기
     public void updateUserCategories(Long userId, List<Category> categories) {
-        userCategoryRepository.updateUserCategories(userId, categories);
+        // 기존 관심 분야 삭제
+        userCategoryRepository.deleteByUserId(userId);
+
+        // 새로운 관심 분야 추가
+        categories.forEach(category ->
+                userCategoryRepository.saveCategoryForUser(userId, String.valueOf(category.getId()))
+        );
+
     }
 }
 
