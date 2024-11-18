@@ -48,7 +48,7 @@ public class UserCategoryRepositoryImpl implements UserCategoryRepository {
     @Override
     public void saveCategoryForUser(Long userId, String categoryId) {
 
-        Category category = Category.fromId(categoryId);
+        Category category = Category.fromStringId(categoryId);
 
 
         String insertSql = "INSERT INTO user_category (user_id, id, category) VALUES (?, ?, ?)";

@@ -4,7 +4,7 @@ package dgu.cse.newsee.app.dto;
 import dgu.cse.newsee.domain.enums.Category;
 
 public class CategoryDto {
-    private String id;
+    private int id;
     private String categoryName;
 
     public CategoryDto(Category category) {
@@ -13,7 +13,7 @@ public class CategoryDto {
     }
 
     // Getter
-    public String getCategoryId() {
+    public int getCategoryId() {
         return id;
     }
 

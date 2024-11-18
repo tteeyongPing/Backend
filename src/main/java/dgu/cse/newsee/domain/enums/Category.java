@@ -3,23 +3,23 @@ package dgu.cse.newsee.domain.enums;
 import dgu.cse.newsee.apiPayload.exception.NewsException;
 
 public enum Category {
-    경제("1", "business"),
-    연예오락("2", "entertainment"),
-    사회("3", "general"),
-    건강의료("4", "health"),
-    과학기술("5", "science"),
-    스포츠("6", "sports"),
-    문화예술("7", "technology");
+    경제(1, "business"),
+    연예오락(2, "entertainment"),
+    사회(3, "general"),
+    건강의료(4, "health"),
+    과학기술(5, "science"),
+    스포츠(6, "sports"),
+    문화예술(7, "technology");
 
-    private final String id;
+    private final int id;
     private final String english;
 
-    Category(String id, String english) {
+    Category(int id, String english) {
         this.id = id;
         this.english = english;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -28,14 +28,25 @@ public enum Category {
     }
 
     // ID로 카테고리 이름 반환
-    public static Category fromId(String id) {
+    public static String fromId(String id) {
         for (Category category : values()) {
-            if (category.getId().equals(id)) {
+            if (String.valueOf(category.getId()).equals(id)) {
+                return category.name();
+            }
+        }
+        throw new NewsException.CategoryNonExistsException("존재하지 않는 카테고리 ID 입니다.");
+    }
+
+
+    public static Category fromStringId(String id) {
+        for (Category category : values()) {
+            if (String.valueOf(category.getId()).equals(id))  {
                 return category;
             }
         }
         throw new NewsException.CategoryNonExistsException("존재하지 않는 카테고리 ID 입니다.");
     }
+
 
 
     // 한글 이름으로 카테고리 반환

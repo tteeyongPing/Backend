@@ -52,7 +52,7 @@ public class CategoryController {
     public ApiResponse<Object> editMyCategories(@RequestParam Long userId, @RequestBody List<String> categoryIds) {
         // categoryIds를 Category 객체로 변환
         List<Category> categories = categoryIds.stream()
-                .map(Category::fromId) // fromId 메서드가 String을 받아 Category 반환
+                .map(Category::fromStringId) // fromId 메서드가 String을 받아 Category 반환
                 .toList();
 
         // Service 호출

@@ -34,7 +34,10 @@ public class CategoryService {
         userCategoryRepository.deleteByUserId(userId);
 
         // 새로운 관심 분야 추가
-        categories.forEach(category -> userCategoryRepository.saveCategoryForUser(userId, category.getId()));
+        categories.forEach(category ->
+                userCategoryRepository.saveCategoryForUser(userId, String.valueOf(category.getId()))
+        );
+
     }
 }
 
