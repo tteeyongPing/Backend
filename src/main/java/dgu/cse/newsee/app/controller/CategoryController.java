@@ -49,12 +49,18 @@ public class CategoryController {
     // 내 관심분야 등록/수정하기
     @PatchMapping("/edit")
     public ResponseEntity<Object> editMyCategories(@RequestParam Long userId, @RequestBody List<String> categoryIds) {
+        // categoryIds를 Category 객체로 변환
         List<Category> categories = categoryIds.stream()
-                .map(Category::fromId) // fromId 사용
+                .map(Category::fromId) // fromId 메서드가 String을 받아 Category 반환
                 .toList();
+
+        // Service 호출
         categoryService.updateUserCategories(userId, categories);
 
-        return ResponseEntity.ok().body(new ApiResponse(200, "SUCCESS", "내 관심분야가 수정되었습니다.", null));
+        // 성공 응답 반환
+        return ResponseEntity.ok(new ApiResponse(200, "SUCCESS", "내 관심분야가 수정되었습니다.", null));
     }
+
+
 
 }
