@@ -46,6 +46,22 @@ public enum Status {
     MEMO_DELETE_SUCCESS("200", "SUCCESS", "메모를 삭제했습니다."),
     MEMO_NOT_FOUND("404", "FAILURE", "메모가 존재하지 않습니다."),
 
+    // PLAYLIST 관련
+    MY_PLAYLISTS_SUCCESS("200", "SUCCESS", "내 플레이리스트를 가지고 왔습니다."),
+    ADD_TO_PLAYLIST_SUCCESS("200", "SUCCESS", "해당 플레이리스트에 뉴스를 추가했습니다."),
+    DELETE_FROM_PLAYLIST_SUCCESS("200", "SUCCESS", "해당 플레이리스트의 뉴스를 삭제했습니다."),
+    CREATE_PLAYLIST_SUCCESS("200", "SUCCESS", "플레이리스트를 생성했습니다."),
+    EDIT_PLAYLIST_SUCCESS("200", "SUCCESS", "플레이리스트의 정보를 수정했습니다."),
+    DELETE_PLAYLIST_SUCCESS("200", "SUCCESS", "해당 플레이리스트를 삭제했습니다."),
+    MY_SUBSCRIBE_SUCCESS("200", "SUCCESS", "구독중인 플레이리스트를 가지고 왔습니다."),
+    SUBSCRIBE_SUCCESS("200", "SUCCESS", "해당 플레이리스트를 구독했습니다."),
+    PLAYLIST_NON_EXISTS("404", "FAILURE", "내 플레이리스트를 찾을 수 없습니다."),
+    UNAUTHORIZED_PLAYLIST("403", "FAILURE", "사용자에게 속하지 않은 플레이리스트입니다."),
+    NEW_NOT_FOUND_PLAYLIST("404", "FAILURE", "플레이리스트에 해당 뉴스가 존재하지 않습니다."),
+    SUBSCRIBE_PLAYLIST_NON_EXISTS("404", "FAILURE", "구독중인 플레이리스트가 없습니다."),
+    SUBSCRIBE_MY_PLAYLIST("403", "FAILURE", "내 플레이리스트를 구독할 수 없습니다."),
+    ALREADY_SUBSCRIBED("409", "FAILURE", "이미 구독중인 플레이리스트입니다."),
+
     //Category 관련
     CATEGORY_LIST_SUCCESS("200", "SUCCESS", "관심분야를 가지고 왔습니다."),
     CATEGORY_MY_SUCCESS("200", "SUCCESS", "내 관심분야를 가지고 왔습니다."),
@@ -60,6 +76,7 @@ public enum Status {
     ALARM_NON_EXISTS("404", "FAILURE", "존재하지 않는 알림입니다."),
     ALARM_CREATION_FAILED("500", "FAILURE", "알림 생성에 실패했습니다."),
     ALARM_UPDATE_UNAUTHORIZED("403", "FAILURE", "알림을 업데이트할 권한이 없습니다.");
+  
     private final String code;
     private final String result;
     private final String message;
