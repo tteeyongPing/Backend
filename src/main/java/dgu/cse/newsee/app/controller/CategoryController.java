@@ -57,8 +57,6 @@ public class CategoryController {
 
         // Service 호출
         categoryService.updateUserCategories(userId, categories);
-
-        // 성공 응답 반환
         return ApiResponse.onSuccess(Status.CATEGORY_EDIT_SUCCESS, null);
     }
 
