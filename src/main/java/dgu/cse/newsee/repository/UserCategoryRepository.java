@@ -9,4 +9,8 @@ import java.util.List;
 public interface UserCategoryRepository {
     List<Category> findCategoriesByUserId(Long userId);
     void updateUserCategories(Long userId, List<Category> categories);
+
+    void deleteByUserId(Long userId);
+
+    void saveCategoryForUser(Long userId, String id);
 }

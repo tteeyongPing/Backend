@@ -21,8 +21,5 @@ public class User {
     @Column(nullable = false, length = 256)
     private String email;
 
-    @Column(length = 256)
-    private String phone;
-
     public void setNickname(String nickname) {this.name = nickname;}
 }
