@@ -5,11 +5,10 @@ import dgu.cse.newsee.domain.entity.News;
 import dgu.cse.newsee.domain.enums.Category;
 import dgu.cse.newsee.repository.NewsQueryRepository;
 import dgu.cse.newsee.repository.NewsRepository;
-import dgu.cse.newsee.repository.UserCategoryRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import dgu.cse.newsee.repository.UserCategoryRepository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -20,11 +19,23 @@ public class NewsServiceImpl implements NewsService {
 
     private final NewsQueryRepository newsQueryRepository;
     private final NewsRepository newsRepository;
-    private final UserCategoryRepository userCategoryRepository;
+    private final NewsDataFetchServiceImpl newsDataFetchService;
+    private final NewsAPIFetchServiceImpl newsAPIFetchService;
 
     @Override
-    public List<News> getNewsList(String categoryId) {
-        List<News> newsList = newsQueryRepository.findNewsListByCategory(categoryId);
+    public List<News> getNewsList(int categoryId) {
+        newsDataFetchService.fetchNews();
+        newsAPIFetchService.fetchNews();
+        String category = Category.fromId(categoryId);
+        List<News> newsList = newsQueryRepository.findNewsListByCategory(category);
+        return newsList;
+    }
+
+    @Override
+    public List<News> getNewsListAll() {
+        newsDataFetchService.fetchNews();
+        newsAPIFetchService.fetchNews();
+        List<News> newsList = newsQueryRepository.findNewsListAll();
         return newsList;
     }
 
@@ -38,11 +49,6 @@ public class NewsServiceImpl implements NewsService {
         return shorts;
     }
 
-    @Override
-    public List<News> getNewsListAll() {
-        List<News> newsList = newsQueryRepository.findNewsListAll();
-        return newsList;
-    }
     @Override
     public News getNewsById(Long newsId) {
         Optional<News> news = newsRepository.findById(newsId);

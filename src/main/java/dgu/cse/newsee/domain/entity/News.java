@@ -30,7 +30,7 @@ public class News {
     @Column(nullable = false, length = 256)
     private String company;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String shorts;
 
     @Column(nullable = false, length = 256)
