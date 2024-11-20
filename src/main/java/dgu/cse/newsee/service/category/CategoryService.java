@@ -40,10 +40,10 @@ public class CategoryService {
         if (!userRepository.existsById(userId)) {
             throw new UserException.UserNonExistsException("등록되지 않은 사용자입니다.");
         }
-        // 기존 관심 분야 삭제
+
         userCategoryRepository.deleteByUserId(userId);
 
-        // 새로운 관심 분야 추가
+
         categories.forEach(category ->
                 userCategoryRepository.saveCategoryForUser(userId, String.valueOf(category.getId()))
         );
