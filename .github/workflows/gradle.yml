@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.NCP_USERNAME }}
           key: ${{ secrets.NCP_KEY }}
           source: "/etc/letsencrypt/live/newsee.xyz/keystore.p12"
-          target: "./keystore.p12"  # 로컬(깃허브 서버)에서 저장할 위치
+          target: "/app/resources/keystore.p12"  # 로컬(깃허브 서버)에서 저장할 위치
           debug: true  # 암호화된 연결 방식 변경
 
       # DockerHub 로그인
