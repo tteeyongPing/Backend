@@ -27,20 +27,10 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - run: echo $BASE_64_KEYSTORE | base64 -d > ./keystore.p12
+
       - name: Build with Gradle
         run: ./gradlew clean build --exclude-task test
-
-      # keystore.p12 파일을 서버로 복사
-      - name: Copy keystore.p12 from Server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.NCP_HOST }}
-          username: ${{ secrets.NCP_USERNAME }}
-          key: ${{ secrets.NCP_KEY }}
-          source: "/etc/letsencrypt/live/newsee.xyz/keystore.p12"
-          target: "/app/resources/keystore.p12"  # 로컬(깃허브 서버)에서 저장할 위치
-          debug: true  # 암호화된 연결 방식 변경
-          overwrite: true  # 기존 파일 덮어쓰기
 
       # DockerHub 로그인
       - name: DockerHub Login
