@@ -63,4 +63,5 @@ jobs:
             -e REDIRECT_URI=${{ secrets.REDIRECT_URI }} \
             -e NEWS_API_KEY=${{ secrets.NEWS_API_KEY }} \
             -e NEWSDATA_API_KEY=${{ secrets.NEWSDATA_API_KEY }} \
+            -e KEY_STORE_PASSWORD=${{ secrets.KEY_STORE_PASSWORD }} \
             -d ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}
