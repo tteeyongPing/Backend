@@ -33,15 +33,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Copy keystore.p12 from Server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.NCP_HOST }}
-          username: ${{ secrets.NCP_USERNAME }}
-          key: ${{ secrets.NCP_KEY }}
-          source: "/etc/letsencrypt/live/newsee.xyz/keystore.p12"
-          target: "./keystore.p12"  # GitHub 서버에 저장할 위치
-
       # Docker 이미지 빌드
       - name: Docker Image Build
         run: docker build -f Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }} .
