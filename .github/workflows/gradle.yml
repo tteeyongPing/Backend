@@ -66,5 +66,5 @@ jobs:
             
             sudo docker run -p ${{ secrets.PORT }}:${{ secrets.PORT }} \
             --name ${{ secrets.PROJECT_NAME }} \
-            -v /etc/letsencrypt/live/newsee.xyz/keystore.p12:/app/resources/keystore.p12 \
+#            -v /etc/letsencrypt/live/newsee.xyz/keystore.p12:/app/resources/keystore.p12 \
             -d ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}
