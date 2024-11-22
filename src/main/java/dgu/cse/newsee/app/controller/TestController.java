@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/temp")
-public class TempController {
+@RequestMapping("api/test")
+public class TestController {
 
-    public ApiResponse<?> temp(){
-        return ApiResponse.onSuccess(Status.TEMP_SUCCESS, null);
+    public ApiResponse<?> test(){
+        return ApiResponse.onSuccess(Status.TEMP_SUCCESS, "API 테스트 성공");
     }
 }
