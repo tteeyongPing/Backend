@@ -27,10 +27,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Decode keystore.p12 from Base64
-        run: |
-          echo "$KEYSTORE_P12_BASE64" | base64 --decode > src/main/resources/keystore.p12
-
       # Gradle Build를 위한 권한 부여
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -64,9 +60,11 @@ jobs:
           script: |
             sudo docker kill ${{ secrets.PROJECT_NAME }}
             sudo docker rm -f ${{ secrets.PROJECT_NAME }}
+            
             sudo docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}  
             
             sudo docker run -p ${{ secrets.PORT }}:${{ secrets.PORT }} \
             --name ${{ secrets.PROJECT_NAME }} \
+            -v /etc/letsencrypt/live/newsee.xyz/keystore.p12:/app/keystore.p12 \
             -d ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}
