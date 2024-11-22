@@ -13,7 +13,7 @@ spring:
     password: ${MYSQL_PROD_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    generate-ddl: false
+    generate-ddl: true
     show-sql: false
     properties:
       hibernate:
