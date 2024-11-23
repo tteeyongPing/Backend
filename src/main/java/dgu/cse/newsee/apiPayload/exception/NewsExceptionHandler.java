@@ -12,7 +12,7 @@ public class NewsExceptionHandler {
 
     @ExceptionHandler(NewsException.NewsNonExistsException.class)
     public ResponseEntity<ApiResponse<?>> handleNewsNonExistsException(NewsException.NewsNonExistsException ex){
-        return new ResponseEntity<>(ApiResponse.onFailure(Status.TOKEN_INVALID), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(ApiResponse.onFailure(Status.NEWS_NON_EXISTS), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(NewsException.CategoryNonExistsException.class)
