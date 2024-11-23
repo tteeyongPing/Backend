@@ -21,6 +21,10 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
   jwt:
     secret: ${JWT_SECRET_KEY}
+  data:
+    redis:
+      host: 175.106.98.93
+      port: 6379
 
 security:
   kakao:
