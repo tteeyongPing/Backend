@@ -9,6 +9,7 @@ spring:
     show-sql: false
     properties:
       hibernate:
+        ddl-auto: update
         dialect: org.hibernate.dialect.MySQLDialect
 
   jwt:
@@ -22,6 +23,3 @@ security:
 news:
   news_api_key: ${NEWS_API_KEY}
   newsdata_api_key : ${NEWSDATA_API_KEY}
-  profiles:
-    active: dev
-

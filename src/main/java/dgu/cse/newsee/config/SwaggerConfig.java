@@ -22,7 +22,15 @@ public class SwaggerConfig {
 
         Server httpServer = new Server()
                 .url("http://localhost:8080")
-                .description("HTTP server");
+                .description("HTTP local server");
+
+        Server httpServer2 = new Server()
+                .url("http://newsee.xyz")
+                .description("HTTP Prod server");
+
+        Server httpsServer = new Server()
+                .url("https://newsee.xyz")
+                .description("HTTPS Prod server");
 
         SecurityScheme securityScheme = new SecurityScheme()
                 .type(SecurityScheme.Type.HTTP)
@@ -36,6 +44,6 @@ public class SwaggerConfig {
                 .components(new Components().addSecuritySchemes("BearerAuth", securityScheme))
                 .info(info)
                 .addSecurityItem(securityRequirement)
-                .servers(List.of(httpServer));
+                .servers(List.of(httpServer, httpServer2, httpsServer));
     }
 }
