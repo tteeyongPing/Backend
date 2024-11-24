@@ -49,6 +49,7 @@ public class AlarmServiceImpl implements AlarmService {
         }
         alarm.setPeriod(alarmDto.getPeriod());
         alarm.setActive(alarmDto.isActive());
+        alarm.setDay(alarmDto.getDay());
         alarmRepository.save(alarm);
     }
 
