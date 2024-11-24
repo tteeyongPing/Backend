@@ -1,5 +1,6 @@
 package dgu.cse.newsee.domain.entity;
 
+import dgu.cse.newsee.domain.enums.Day;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,10 +25,15 @@ public class Alarm {
 
 
 
-    public Alarm(Long userId, String period, boolean active){
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 10)
+    private Day day;
+
+    public Alarm(Long userId, String period, boolean active, Day day) {
         this.userId = userId;
         this.period = period;
         this.active = active;
+        this.day = day;
     }
 
 
@@ -61,5 +67,12 @@ public class Alarm {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+    public Day getDay() {
+        return day;
+    }
+
+    public void setDay(Day day) {
+        this.day = day;
     }
 }

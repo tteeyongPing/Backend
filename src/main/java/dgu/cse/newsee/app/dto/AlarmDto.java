@@ -1,5 +1,6 @@
 package dgu.cse.newsee.app.dto;
 
+import dgu.cse.newsee.domain.enums.Day;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -8,7 +9,7 @@ public class AlarmDto {
     private String period;
     private Long userId;
     private boolean active;
-
+    private Day day;
 
     public Long getAlarmId() {
         return alarmId;
@@ -40,5 +41,12 @@ public class AlarmDto {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+    public Day getDay() {
+        return day;
+    }
+
+    public void setDay(Day day) {
+        this.day = day;
     }
 }

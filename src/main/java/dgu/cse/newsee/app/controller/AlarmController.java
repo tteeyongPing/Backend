@@ -5,6 +5,7 @@ import dgu.cse.newsee.apiPayload.ApiResponse;
 import dgu.cse.newsee.apiPayload.Status;
 import dgu.cse.newsee.service.alarm.AlarmService;
 import dgu.cse.newsee.app.dto.AlarmDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Alarm API", description = "알림 관련 API")
 @RequestMapping("/api/alarm")
 public class AlarmController {
 

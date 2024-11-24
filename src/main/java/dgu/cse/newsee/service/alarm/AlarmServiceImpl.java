@@ -28,14 +28,14 @@ public class AlarmServiceImpl implements AlarmService {
             throw new AlarmException.AlarmNonExistsException("등록된 알림이 없습니다.");
         }
         return alarms.stream()
-                .map(alarm -> new AlarmDto(alarm.getId(), alarm.getPeriod(), alarm.getUserId(), alarm.isActive()))
+                .map(alarm -> new AlarmDto(alarm.getId(), alarm.getPeriod(), alarm.getUserId(), alarm.isActive(),alarm.getDay()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void createAlarm(String token, AlarmDto alarmDto) {
         Long userId = userAccountService.getUserIdFromToken(token);
-        Alarm alarm = new Alarm(userId, alarmDto.getPeriod(), alarmDto.isActive());
+        Alarm alarm = new Alarm(userId, alarmDto.getPeriod(), alarmDto.isActive(), alarmDto.getDay());
         alarmRepository.save(alarm);
     }
 
@@ -49,6 +49,7 @@ public class AlarmServiceImpl implements AlarmService {
         }
         alarm.setPeriod(alarmDto.getPeriod());
         alarm.setActive(alarmDto.isActive());
+        alarm.setDay(alarmDto.getDay());
         alarmRepository.save(alarm);
     }
 
