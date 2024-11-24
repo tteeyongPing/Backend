@@ -89,6 +89,13 @@ public class UserAccountServiceImpl implements UserAccountService{
     }
 
     @Override
+    public String getNickname(Long userId) {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isEmpty()) { throw new UserException.UserNonExistsException("존재하지 않는 회원입니다."); }
+        return user.get().getNickname();
+    }
+
+    @Override
     public void deleteUser(Long userId) {
         Optional<User> user = userRepository.findById(userId);
         if (user.isEmpty()) { throw new UserException.UserNonExistsException("존재하지 않는 회원입니다."); }
