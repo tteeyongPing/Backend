@@ -35,7 +35,7 @@ public class SearchService {
     }
 
     public List<PlaylistDto.getPlaylistResponseDto> searchPlaylist(String input) {
-        List<Playlist> playlists = playlistRepository.findByNameContainingOrUser_NameContaining(input, input);
+        List<Playlist> playlists = playlistRepository.findByNameContainingOrUser_NameContaining(input);
         if (playlists.isEmpty()) {
             throw new SearchException.PlaylistNotFoundException("검색된 플레이리스트가 없습니다.");
         }
@@ -45,6 +45,7 @@ public class SearchService {
                         playlist.getName(),
                         playlist.getDescription(),
                         playlist.getUser().getId(),
+                        playlist.getUser().getName(),
                         playlist.getPlaylistNews().stream()
                                 .map(playlistNews -> new PlaylistDto.NewsDto(
                                         playlistNews.getNews().getId(),
