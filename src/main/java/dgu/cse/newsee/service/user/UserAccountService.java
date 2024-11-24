@@ -13,4 +13,5 @@ public interface UserAccountService {
     void updateNickname(Long userId, String newNickname);
     void deleteUser(Long userId);
     void logout(String token);
+    String getNickname(Long userId);
 }

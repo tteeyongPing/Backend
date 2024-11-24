@@ -24,6 +24,14 @@ public class UserController {
         return ApiResponse.onSuccess(Status.NICKNAME_SUCCESS, null);
     }
 
+    @Operation(summary = "닉네임 가져오기")
+    @PatchMapping("/nickname/get")
+    public ApiResponse<?> getNickname(@RequestHeader("Authorization") String token){
+        Long userId = userAccountService.getUserIdFromToken(token);
+        String nickname = userAccountService.getNickname(userId);
+        return ApiResponse.onSuccess(Status.NICKNAME_GET_SUCCESS, nickname);
+    }
+
     @Operation(summary = "로그아웃")
     @PostMapping("/logout")
     public ApiResponse<?> kakaoLogout(@RequestHeader("Authorization") String token){
