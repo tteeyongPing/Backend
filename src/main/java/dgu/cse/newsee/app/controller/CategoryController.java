@@ -7,6 +7,7 @@ import dgu.cse.newsee.apiPayload.exception.UserException;
 import dgu.cse.newsee.service.category.CategoryService;
 import dgu.cse.newsee.domain.enums.Category;
 import dgu.cse.newsee.app.dto.CategoryDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/category")
+@Tag(name = "카테고리 API", description = "카테고리 관련 API")
 public class CategoryController {
 
     private final CategoryService categoryService;
