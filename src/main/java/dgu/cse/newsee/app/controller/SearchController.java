@@ -4,6 +4,7 @@ import dgu.cse.newsee.apiPayload.ApiResponse;
 import dgu.cse.newsee.apiPayload.Status;
 import dgu.cse.newsee.app.dto.PlaylistDto;
 import dgu.cse.newsee.service.search.SearchService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/search")
+@Tag(name = "검색 API", description = "검색 관련 API")
 @RequiredArgsConstructor
 public class SearchController {
 

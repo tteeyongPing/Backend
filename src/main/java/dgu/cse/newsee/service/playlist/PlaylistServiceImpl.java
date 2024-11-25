@@ -41,6 +41,7 @@ public class PlaylistServiceImpl implements PlaylistService {
                 playlist.getName(),
                 playlist.getDescription(),
                 playlist.getUser().getId(),
+                playlist.getUser().getName(),
                 playlist.getPlaylistNews().stream().map(newsItem ->
                         new PlaylistDto.NewsDto(
                                 newsItem.getNews().getId(),
@@ -141,6 +142,7 @@ public class PlaylistServiceImpl implements PlaylistService {
                             playlist.getName(),
                             playlist.getDescription(),
                             playlist.getUser().getId(),
+                            playlist.getUser().getName(),
                             playlist.getPlaylistNews().stream().map(newsItem ->
                                     new PlaylistDto.NewsDto(
                                             newsItem.getNews().getId(),
