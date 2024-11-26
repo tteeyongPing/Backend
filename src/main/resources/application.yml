@@ -1,3 +1,3 @@
 spring:
   profiles:
-    active: dev # 개발할 때는 dev라고 설정해두고 배포할때는 prod라고 해야됨
+    active: dev

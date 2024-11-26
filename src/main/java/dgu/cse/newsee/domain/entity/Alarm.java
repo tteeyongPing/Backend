@@ -1,13 +1,16 @@
 package dgu.cse.newsee.domain.entity;
 
-import dgu.cse.newsee.domain.enums.Day;
+import dgu.cse.newsee.domain.converter.StringListConverter;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
-@Builder
+//@AllArgsConstructor
+//@Builder
 @Table(name = "Alarm")
 public class Alarm {
     @Id
@@ -25,15 +28,16 @@ public class Alarm {
 
 
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
-    private Day day;
+    @Convert(converter = StringListConverter.class)
+    @Column(nullable = false, columnDefinition = "JSON") // MySQL JSON 타입 사용
+    private List<String> days; // 요일 문자열 리스트
 
-    public Alarm(Long userId, String period, boolean active, Day day) {
+    public Alarm( Long userId, String period, boolean active, List<String> day) {
+
         this.userId = userId;
         this.period = period;
         this.active = active;
-        this.day = day;
+        this.days = day;
     }
 
 
@@ -68,11 +72,11 @@ public class Alarm {
     public void setActive(boolean active) {
         this.active = active;
     }
-    public Day getDay() {
-        return day;
+    public List<String> getDay() {
+        return days;
     }
 
-    public void setDay(Day day) {
-        this.day = day;
+    public void setDay(List<String> day) {
+        this.days = day;
     }
 }
