@@ -4,6 +4,8 @@ import dgu.cse.newsee.domain.enums.Day;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -26,10 +28,12 @@ public class Alarm {
 
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
-    private Day day;
+    @ElementCollection
+    @CollectionTable(name = "user_days", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "day", nullable = false, length = 10)
+    private List<Day> day;
 
-    public Alarm(Long userId, String period, boolean active, Day day) {
+    public Alarm(Long userId, String period, boolean active, List<Day> day) {
         this.userId = userId;
         this.period = period;
         this.active = active;
@@ -68,11 +72,11 @@ public class Alarm {
     public void setActive(boolean active) {
         this.active = active;
     }
-    public Day getDay() {
+    public List<Day> getDay() {
         return day;
     }
 
-    public void setDay(Day day) {
+    public void setDay(List<Day> day) {
         this.day = day;
     }
 }

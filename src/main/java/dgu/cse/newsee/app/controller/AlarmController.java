@@ -5,6 +5,7 @@ import dgu.cse.newsee.apiPayload.ApiResponse;
 import dgu.cse.newsee.apiPayload.Status;
 import dgu.cse.newsee.service.alarm.AlarmService;
 import dgu.cse.newsee.app.dto.AlarmDto;
+import dgu.cse.newsee.app.dto.AlarmDto.AlarmRequestDto;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,20 +28,20 @@ public class AlarmController {
     // 알림 가져오기
     @GetMapping
     public ApiResponse<?> getAlarms(@RequestHeader("Authorization") String token) {
-        List<AlarmDto> alarms = alarmService.getAlarms(token);
+        List<AlarmRequestDto> alarms = alarmService.getAlarms(token);
         return ApiResponse.onSuccess(Status.ALARM_GET_SUCCESS, alarms);
     }
 
     // 알림 주기 생성
     @PostMapping("/create")
-    public ApiResponse<Object> createAlarm(@RequestHeader("Authorization") String token, @RequestBody AlarmDto alarmDto) {
+    public ApiResponse<Object> createAlarm(@RequestHeader("Authorization") String token, @RequestBody AlarmRequestDto alarmDto) {
         alarmService.createAlarm(token, alarmDto);
         return ApiResponse.onSuccess(Status.ALARM_CREATE_SUCCESS,null);
     }
 
     // 알림 주기 수정
     @PatchMapping("/edit")
-    public ApiResponse<?> editAlarm(@RequestHeader("Authorization") String token, @RequestBody AlarmDto alarmDto) {
+    public ApiResponse<?> editAlarm(@RequestHeader("Authorization") String token, @RequestBody AlarmRequestDto alarmDto) {
         alarmService.editAlarm(token, alarmDto);
         return ApiResponse.onSuccess(Status.ALARM_EDIT_SUCCESS,null);
     }
