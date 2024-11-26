@@ -1,6 +1,7 @@
 package dgu.cse.newsee.service.search;
 
 import dgu.cse.newsee.apiPayload.exception.SearchException;
+import dgu.cse.newsee.app.dto.NewsDto;
 import dgu.cse.newsee.app.dto.PlaylistDto;
 import dgu.cse.newsee.domain.entity.News;
 import dgu.cse.newsee.domain.entity.Playlist;
@@ -19,19 +20,17 @@ public class SearchService {
     private final NewsRepository newsRepository;
     private final PlaylistRepository playlistRepository;
 
-    public List<PlaylistDto.NewsDto> searchNews(String input) {
+    public List<NewsDto.NewsRequestDto> searchNews(String input) {
         List<News> newsList = newsRepository.findByTitleContainingOrContentContaining(input, input);
         if (newsList.isEmpty()) {
             throw new SearchException.NewsNotFoundException("검색된 뉴스가 없습니다.");
         }
+
         return newsList.stream()
-                .map(news -> new PlaylistDto.NewsDto(
-                        news.getId(),
-                        news.getTitle(),
-                        news.getDate(),
-                        news.getCompany()
-                ))
+                .map(news -> new NewsDto.NewsRequestDto(news.getId(), news.getTitle(), news.getDate(), news.getShorts(), news.getReporter()))
                 .collect(Collectors.toList());
+
+
     }
 
     public List<PlaylistDto.getPlaylistResponseDto> searchPlaylist(String input) {
