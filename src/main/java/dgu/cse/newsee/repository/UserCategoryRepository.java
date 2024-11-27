@@ -1,16 +1,11 @@
 package dgu.cse.newsee.repository;
 
-import dgu.cse.newsee.domain.enums.Category;
-import org.springframework.stereotype.Repository;
+import dgu.cse.newsee.domain.entity.UserCategory;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-@Repository
-public interface UserCategoryRepository {
-    List<Category> findCategoriesByUserId(Long userId);
-    void updateUserCategories(Long userId, List<Category> categories);
-
+public interface UserCategoryRepository extends JpaRepository<UserCategory, Long> {
+    List<UserCategory> findByUserId(Long userId);
     void deleteByUserId(Long userId);
-
-    void saveCategoryForUser(Long userId, String id);
 }
