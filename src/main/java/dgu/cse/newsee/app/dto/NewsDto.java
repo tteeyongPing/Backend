@@ -24,6 +24,7 @@ public class NewsDto {
         private String date;
         private String shorts;
         private String reporter;
+        private String company;
 
     }
 }

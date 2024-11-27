@@ -19,6 +19,11 @@ public class AlarmException extends RuntimeException {
             super(message);
         }
     }
+    public static class AlarmDayError extends AlarmException {
+        public AlarmDayError(String message) {
+            super(message);
+        }
+    }
 
     // 알림 업데이트 시 권한이 없을 때 예외
     public static class AlarmUpdateUnauthorizedException extends AlarmException {
