@@ -2,14 +2,13 @@ package dgu.cse.newsee.service.news;
 
 import dgu.cse.newsee.apiPayload.exception.NewsException;
 import dgu.cse.newsee.domain.entity.News;
-import dgu.cse.newsee.domain.enums.Category;
 import dgu.cse.newsee.repository.NewsQueryRepository;
 import dgu.cse.newsee.repository.NewsRepository;
-import dgu.cse.newsee.repository.UserCategoryRepositoryImpl;
+import dgu.cse.newsee.repository.UserCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import dgu.cse.newsee.repository.UserCategoryRepository;
+
 import java.util.List;
 import java.util.Optional;
 
