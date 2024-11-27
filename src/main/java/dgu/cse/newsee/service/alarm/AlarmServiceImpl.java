@@ -51,7 +51,7 @@ public class AlarmServiceImpl implements AlarmService {
         }
         for (String day : alarmDto.getDays()) {
             if (!List.of("월", "화", "수", "목", "금", "토", "일").contains(day)) {
-                throw new IllegalArgumentException("유효하지 않은 요일: " + day);
+                throw new AlarmException.AlarmDayError("유효하지 않은 요일입니다");
             }
         }
         Alarm alarm = new Alarm(userId, alarmDto.getPeriod(), alarmDto.isActive(), alarmDto.getDays());
@@ -68,7 +68,7 @@ public class AlarmServiceImpl implements AlarmService {
         }
         for (String day : alarmDto.getDays()) {
             if (!List.of("월", "화", "수", "목", "금", "토", "일").contains(day)) {
-                throw new IllegalArgumentException("유효하지 않은 요일: " + day);
+                throw new AlarmException.AlarmDayError("유효하지 않은 요일입니다");
             }
         }
         alarm.setPeriod(alarmDto.getPeriod());

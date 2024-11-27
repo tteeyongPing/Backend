@@ -3,6 +3,7 @@ package dgu.cse.newsee.app.controller;
 
 import dgu.cse.newsee.apiPayload.ApiResponse;
 import dgu.cse.newsee.apiPayload.Status;
+import dgu.cse.newsee.apiPayload.exception.UserException;
 import dgu.cse.newsee.app.dto.AlarmDto.AlarmQueryDto;
 import dgu.cse.newsee.app.dto.AlarmDto.AlarmRequestDto;
 import dgu.cse.newsee.service.alarm.AlarmService;
@@ -34,15 +35,23 @@ public class AlarmController {
     // 알림 주기 생성
     @PostMapping("/create")
     public ApiResponse<Object> createAlarm(@RequestHeader("Authorization") String token, @RequestBody AlarmRequestDto alarmDto) {
-        alarmService.createAlarm(token, alarmDto);
-        return ApiResponse.onSuccess(Status.ALARM_CREATE_SUCCESS,null);
+        try {
+            alarmService.createAlarm(token, alarmDto);
+            return ApiResponse.onSuccess(Status.ALARM_CREATE_SUCCESS, null);
+        }catch (UserException.UserNonExistsException ex){
+            throw new UserException.UserNonExistsException("등록되지 않은 사용자입니다.");
+        }
     }
 
     // 알림 주기 수정
     @PatchMapping("/edit")
     public ApiResponse<?> editAlarm(@RequestHeader("Authorization") String token, @RequestBody AlarmQueryDto alarmDto) {
-        alarmService.editAlarm(token, alarmDto);
+        try{alarmService.editAlarm(token, alarmDto);
         return ApiResponse.onSuccess(Status.ALARM_EDIT_SUCCESS,null);
+        }catch (UserException.UserNonExistsException ex){
+            throw new UserException.UserNonExistsException("등록되지 않은 사용자입니다.");
+        }
+
     }
 
     // 알림 주기 삭제
