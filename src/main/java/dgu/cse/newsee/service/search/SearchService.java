@@ -27,7 +27,7 @@ public class SearchService {
         }
 
         return newsList.stream()
-                .map(news -> new NewsDto.NewsRequestDto(news.getId(), news.getTitle(), news.getDate(), news.getShorts(), news.getReporter()))
+                .map(news -> new NewsDto.NewsRequestDto(news.getId(), news.getTitle(), news.getDate(), news.getShorts(), news.getReporter(), news.getCompany()))
                 .collect(Collectors.toList());
 
 
