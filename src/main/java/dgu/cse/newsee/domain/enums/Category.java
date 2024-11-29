@@ -1,5 +1,4 @@
 package dgu.cse.newsee.domain.enums;
-
 import dgu.cse.newsee.apiPayload.exception.NewsException;
 
 public enum Category {
@@ -23,14 +22,9 @@ public enum Category {
         return id;
     }
 
-    public String getEnglish() {
-        return english;
-    }
-
-    // ID로 카테고리 이름 반환
-    public static String fromId(String id) {
+    public static String fromId(int id) {
         for (Category category : values()) {
-            if (String.valueOf(category.getId()).equals(id)) {
+            if (category.getId() == id) {
                 return category.name();
             }
         }

@@ -30,3 +30,6 @@ security:
   kakao:
     client_id: ${CLIENT_ID}
     redirect_uri: ${REDIRECT_URI}
+
+gpt:
+  gpt_secret_key : ${GPT_SECRET_KEY}

@@ -23,4 +23,7 @@ news:
   news_api_key: ${NEWS_API_KEY}
   newsdata_api_key : ${NEWSDATA_API_KEY}
 
+gpt:
+  gpt_secret_key : ${GPT_SECRET_KEY}
+
 
