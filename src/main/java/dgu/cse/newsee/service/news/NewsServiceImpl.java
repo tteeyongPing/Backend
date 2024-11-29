@@ -2,6 +2,7 @@ package dgu.cse.newsee.service.news;
 
 import dgu.cse.newsee.apiPayload.exception.NewsException;
 import dgu.cse.newsee.domain.entity.News;
+import dgu.cse.newsee.domain.enums.Category;
 import dgu.cse.newsee.repository.NewsQueryRepository;
 import dgu.cse.newsee.repository.NewsRepository;
 import lombok.RequiredArgsConstructor;
