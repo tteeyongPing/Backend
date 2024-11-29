@@ -64,5 +64,5 @@ jobs:
             -e NEWS_API_KEY=${{ secrets.NEWS_API_KEY }} \
             -e NEWSDATA_API_KEY=${{ secrets.NEWSDATA_API_KEY }} \
             -e KEY_STORE_PASSWORD=${{ secrets.KEY_STORE_PASSWORD }} \
-            -e GPT_SECRET_KEY=${{secrets.GPT_SECRET_KEY}}
+            -e GPT_SECRET_KEY=${{secrets.GPT_SECRET_KEY}} \
             -d ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}
