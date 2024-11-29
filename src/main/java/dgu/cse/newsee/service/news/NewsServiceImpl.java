@@ -21,6 +21,7 @@ public class NewsServiceImpl implements NewsService {
     private final NewsRepository newsRepository;
     private final NewsDataFetchServiceImpl newsDataFetchService;
     private final NewsAPIFetchServiceImpl newsAPIFetchService;
+    private final NewsShortsService newsShortsService;
 
     @Override
     public List<News> getNewsList(int categoryId) {
@@ -44,7 +45,9 @@ public class NewsServiceImpl implements NewsService {
         News news = getNewsById(newsId);
         String shorts = news.getShorts();
         if(shorts == null){
-
+            shorts = newsShortsService.getShorts(news);
+            news.setShorts(shorts);
+            newsRepository.save(news);
         }
         return shorts;
     }

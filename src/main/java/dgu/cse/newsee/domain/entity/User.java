@@ -22,4 +22,5 @@ public class User {
     private String email;
 
     public void setNickname(String nickname) {this.name = nickname;}
+    public String getNickname() {return name;}
 }

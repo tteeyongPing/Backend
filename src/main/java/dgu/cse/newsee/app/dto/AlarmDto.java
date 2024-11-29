@@ -1,44 +1,38 @@
 package dgu.cse.newsee.app.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 public class AlarmDto {
-    private Long alarmId;
-    private String period;
-    private Long userId;
-    private boolean active;
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class AlarmRequestDto{
+
+        private String period;
+        private boolean active;
+        private List<String> days; // 변경된 부분
 
 
-    public Long getAlarmId() {
-        return alarmId;
+    }
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class AlarmQueryDto {
+        private Long alarmId;
+        private String period;
+        private boolean active;
+        private List<String> days; // 변경된 부분
+
+        public Long getAlarmId() {
+            return alarmId;
+        }
     }
 
-    public void setAlarmId(Long alarmId) {
-        this.alarmId = alarmId;
-    }
 
-    public String getPeriod() {
-        return period;
-    }
 
-    public void setPeriod(String period) {
-        this.period = period;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 }

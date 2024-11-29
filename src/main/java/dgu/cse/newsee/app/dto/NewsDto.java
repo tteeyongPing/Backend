@@ -9,6 +9,15 @@ import java.util.List;
 
 public class NewsDto {
 
+    private Long newsId;
+    private String category;
+    private String title;
+    private String date;
+    private String content;
+    private String company;
+    private String shorts;
+    private String reporter;
+
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
@@ -56,7 +65,7 @@ public class NewsDto {
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class NewsDataApiResponse{
+    public static class NewsDataApiResponse {
         private String status;
         private int totalResults;
         private List<Result> results;
@@ -64,7 +73,7 @@ public class NewsDto {
         @Getter
         @AllArgsConstructor
         @NoArgsConstructor
-        public static class Result{
+        public static class Result {
             String article_id;
             String title;
             String link;
@@ -89,15 +98,28 @@ public class NewsDto {
             String sentiment;
             List<SentimentStatus> sentiment_status;
             boolean duplicate;
+
             @Getter
             @AllArgsConstructor
             @NoArgsConstructor
-            public static class SentimentStatus{
+            public static class SentimentStatus {
                 double positive;
                 double neutral;
                 double negative;
             }
 
         }
+    }
+
+
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class NewsRequestDto{
+        private Long newsId;
+        private String title;
+        private String date;
+        private String shorts;
+        private String reporter;
     }
 }

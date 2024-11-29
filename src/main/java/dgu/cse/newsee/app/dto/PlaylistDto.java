@@ -42,8 +42,10 @@ public class PlaylistDto {
         private String playlistName;
         private String description;
         private Long userId;
+        private String userName;
         private List<NewsDto> newsList;
     }
+
 
     @Getter
     @AllArgsConstructor

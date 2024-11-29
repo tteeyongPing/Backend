@@ -23,6 +23,7 @@ public enum Status {
     KAKAO_LOGIN_SUCCESS("200", "SUCCESS", "카카오 로그인을 성공했습니다."),
     KAKAO_LOGOUT_SUCCESS("200", "SUCCESS", "카카오 로그아웃을 성공했습니다."),
     NICKNAME_SUCCESS("200", "SUCCESS", "닉네임을 변경했습니다."),
+    NICKNAME_GET_SUCCESS("200", "SUCCESS", "닉네임을 읽었습니다."),
     NICKNAME_DUPLICATE("409", "FAILURE", "이미 존재하는 닉네임입니다."),
     LEAVE_SUCCESS("200", "SUCCESS", "회원 탈퇴를 완료했습니다."),
 
