@@ -44,4 +44,11 @@ public class MemoServiceImpl implements MemoService {
         if(memo.isEmpty()) throw new MemoException.MemoNotFoundException("메모가 존재하지 않습니다.");
         memoRepository.delete(memo.get());
     }
+
+    @Override
+    public String getMemo(Long userId, Long newsId) {
+        Optional<NewsMemo> memo = memoRepository.findByUserIdAndNewsId(userId, newsId);
+        if(memo.isEmpty()) throw new MemoException.MemoNotFoundException("메모가 존재하지 않습니다.");
+        return memo.get().getMemo();
+    }
 }
