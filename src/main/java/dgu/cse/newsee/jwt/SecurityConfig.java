@@ -46,12 +46,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.csrf((auth) -> auth.disable());
-
+        http.csrf(csrf -> csrf.disable()); // CSRF 비활성화
         http.cors(cors -> cors.disable());
 
         http.formLogin((auth) -> auth.disable());
-
         http.httpBasic((auth) -> auth.disable());
 
         http.authorizeHttpRequests((auth) -> auth
@@ -60,7 +58,6 @@ public class SecurityConfig {
                 .anyRequest().authenticated());
 
         http.addFilterAt(new AppLoginFilter(authenticationManager(authenticationConfiguration), jwtUtil), UsernamePasswordAuthenticationFilter.class);
-
         http.addFilterBefore(new JWTFilter(jwtUtil), AppLoginFilter.class);
 
         http.sessionManagement((session) -> session
