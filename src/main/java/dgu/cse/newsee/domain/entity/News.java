@@ -1,6 +1,5 @@
 package dgu.cse.newsee.domain.entity;
 
-import dgu.cse.newsee.domain.enums.Category;
 import jakarta.persistence.*;
 import lombok.*;
 
