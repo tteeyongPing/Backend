@@ -2,9 +2,9 @@ package dgu.cse.newsee.service.news;
 
 import dgu.cse.newsee.apiPayload.exception.NewsException;
 import dgu.cse.newsee.domain.entity.News;
+import dgu.cse.newsee.domain.enums.Category;
 import dgu.cse.newsee.repository.NewsQueryRepository;
 import dgu.cse.newsee.repository.NewsRepository;
-import dgu.cse.newsee.repository.UserCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +19,24 @@ public class NewsServiceImpl implements NewsService {
 
     private final NewsQueryRepository newsQueryRepository;
     private final NewsRepository newsRepository;
-    private final UserCategoryRepository userCategoryRepository;
+    private final NewsDataFetchServiceImpl newsDataFetchService;
+    private final NewsAPIFetchServiceImpl newsAPIFetchService;
+    private final NewsShortsService newsShortsService;
 
     @Override
-    public List<News> getNewsList(String categoryId) {
-        List<News> newsList = newsQueryRepository.findNewsListByCategory(categoryId);
+    public List<News> getNewsList(int categoryId) {
+        newsDataFetchService.fetchNews();
+        newsAPIFetchService.fetchNews();
+        String category = Category.fromId(categoryId);
+        List<News> newsList = newsQueryRepository.findNewsListByCategory(category);
+        return newsList;
+    }
+
+    @Override
+    public List<News> getNewsListAll() {
+        newsDataFetchService.fetchNews();
+        newsAPIFetchService.fetchNews();
+        List<News> newsList = newsQueryRepository.findNewsListAll();
         return newsList;
     }
 
@@ -32,16 +45,13 @@ public class NewsServiceImpl implements NewsService {
         News news = getNewsById(newsId);
         String shorts = news.getShorts();
         if(shorts == null){
-
+            shorts = newsShortsService.getShorts(news);
+            news.setShorts(shorts);
+            newsRepository.save(news);
         }
         return shorts;
     }
 
-    @Override
-    public List<News> getNewsListAll() {
-        List<News> newsList = newsQueryRepository.findNewsListAll();
-        return newsList;
-    }
     @Override
     public News getNewsById(Long newsId) {
         Optional<News> news = newsRepository.findById(newsId);

@@ -31,7 +31,7 @@ public class NewsController {
 
     @Operation(summary = "카테고리 별로 뉴스 가지고오기")
     @GetMapping("/list")
-    public ApiResponse<?> getNewsList(@RequestParam(value = "category") String categoryId){
+    public ApiResponse<?> getNewsList(@RequestParam(value = "category") int categoryId){
         List<News> newsList = newsService.getNewsList(categoryId);
         return ApiResponse.onSuccess(Status.READ_CATEGORY_NEWS_SUCCESS, newsList);
     }
