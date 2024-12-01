@@ -41,7 +41,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public String getNewsShorts(Long newsId) {
+    public News getNewsShorts(Long newsId) {
         News news = getNewsById(newsId);
         String shorts = news.getShorts();
         if(shorts == null){
@@ -49,7 +49,14 @@ public class NewsServiceImpl implements NewsService {
             news.setShorts(shorts);
             newsRepository.save(news);
         }
-        return shorts;
+        news = getNewsById(newsId);
+        return news;
+    }
+
+    @Override
+    public News getNews(Long newsId) {
+        News news = getNewsById(newsId);
+        return news;
     }
 
     @Override
@@ -58,4 +65,5 @@ public class NewsServiceImpl implements NewsService {
         if(news.isEmpty()) {throw new NewsException.NewsNonExistsException("존재하지 않는 뉴스입니다.");}
         return news.get();
     }
+
 }

@@ -55,5 +55,6 @@ public class PlaylistDto {
         private String title;
         private String date;
         private String company;
+        private String category;
     }
 }

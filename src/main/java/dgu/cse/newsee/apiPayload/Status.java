@@ -34,6 +34,7 @@ public enum Status {
     READ_CATEGORY_NEWS_SUCCESS("200", "SUCCESS", "해당 카테고리의 뉴스를 읽었습니다."),
     READ_NEWS_ALL_SUCCESS("200", "SUCCESS", "전체 뉴스를 읽었습니다."),
     READ_NEWS_SHORTS_SUCCESS("200", "SUCCESS", "해당 뉴스의 요약본입니다."),
+    READ_NEWS_CONTENTS_SUCCESS("200", "SUCCESS", "해당 뉴스의 본문입니다."),
 
     // BOOKMARK 관련
     BOOKMARK_LIST_SUCCESS("200", "SUCCESS", "북마크 목록을 가져왔습니다."),
@@ -45,6 +46,7 @@ public enum Status {
     MEMO_UPDATE_SUCCESS("200", "SUCCESS", "메모를 업데이트했습니다."),
     MEMO_DELETE_SUCCESS("200", "SUCCESS", "메모를 삭제했습니다."),
     MEMO_NOT_FOUND("404", "FAILURE", "메모가 존재하지 않습니다."),
+    MEMO_READ_SUCCESS("200", "SUCCESS", "메모를 읽어왔습니다."),
 
     // PLAYLIST 관련
     MY_PLAYLISTS_SUCCESS("200", "SUCCESS", "내 플레이리스트를 가지고 왔습니다."),

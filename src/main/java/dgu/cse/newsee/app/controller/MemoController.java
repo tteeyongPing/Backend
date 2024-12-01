@@ -34,4 +34,12 @@ public class MemoController {
         memoService.deleteMemo(userId, dto.getNewsId());
         return ApiResponse.onSuccess(Status.MEMO_DELETE_SUCCESS, null);
     }
+
+    @Operation(summary = "메모 가져오기")
+    @GetMapping("/read")
+    public ApiResponse<?> getMemo(@RequestHeader("Authorization") String token, @RequestParam("newsId") Long newId){
+        Long userId = userAccountService.getUserIdFromToken(token);
+        String memoText = memoService.getMemo(userId, newId);
+        return ApiResponse.onSuccess(Status.MEMO_READ_SUCCESS, memoText);
+    }
 }

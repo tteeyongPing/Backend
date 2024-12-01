@@ -52,6 +52,7 @@ public class SearchServiceImpl implements SearchService {
                                         playlistNews.getNews().getId(),
                                         playlistNews.getNews().getTitle(),
                                         playlistNews.getNews().getDate(),
+                                        playlistNews.getNews().getCompany(),
                                         playlistNews.getNews().getCompany()
                                 ))
                                 .collect(Collectors.toList())
