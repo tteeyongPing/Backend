@@ -48,6 +48,8 @@ public class SecurityConfig {
 
         http.csrf((auth) -> auth.disable());
 
+        http.cors(cors -> cors.disable());
+
         http.formLogin((auth) -> auth.disable());
 
         http.httpBasic((auth) -> auth.disable());
@@ -57,7 +59,6 @@ public class SecurityConfig {
                 .requestMatchers(PERMIT_URL_ARRAY).permitAll()
                 .anyRequest().authenticated());
 
-        http.addFilterAt(new AppLoginFilter(authenticationManager(authenticationConfiguration), jwtUtil), UsernamePasswordAuthenticationFilter.class); //JWTUtil 인수 추가
         http.addFilterAt(new AppLoginFilter(authenticationManager(authenticationConfiguration), jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         http.addFilterBefore(new JWTFilter(jwtUtil), AppLoginFilter.class);
