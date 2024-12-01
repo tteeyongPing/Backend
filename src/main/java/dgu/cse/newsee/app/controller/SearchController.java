@@ -4,7 +4,7 @@ import dgu.cse.newsee.apiPayload.ApiResponse;
 import dgu.cse.newsee.apiPayload.Status;
 import dgu.cse.newsee.app.dto.NewsDto;
 import dgu.cse.newsee.app.dto.PlaylistDto;
-import dgu.cse.newsee.service.search.SearchService;
+import dgu.cse.newsee.service.search.SearchServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SearchController {
 
-    private final SearchService searchService;
+    private final SearchServiceImpl searchService;
 
     // 뉴스 검색
     @GetMapping("/news")

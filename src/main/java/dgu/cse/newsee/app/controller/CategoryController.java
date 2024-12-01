@@ -4,7 +4,7 @@ package dgu.cse.newsee.app.controller;
 import dgu.cse.newsee.apiPayload.Status;
 import dgu.cse.newsee.apiPayload.ApiResponse;
 import dgu.cse.newsee.apiPayload.exception.UserException;
-import dgu.cse.newsee.service.category.CategoryService;
+import dgu.cse.newsee.service.category.CategoryServiceImpl;
 import dgu.cse.newsee.domain.enums.Category;
 import dgu.cse.newsee.app.dto.CategoryDto;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,11 +19,11 @@ import java.util.stream.Collectors;
 @Tag(name = "카테고리 API", description = "카테고리 관련 API")
 public class CategoryController {
 
-    private final CategoryService categoryService;
+    private final CategoryServiceImpl categoryService;
 
 
     @Autowired
-    public CategoryController(CategoryService categoryService) {
+    public CategoryController(CategoryServiceImpl categoryService) {
         this.categoryService = categoryService;
     }
 
