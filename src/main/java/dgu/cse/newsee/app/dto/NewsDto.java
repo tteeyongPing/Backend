@@ -35,6 +35,20 @@ public class NewsDto {
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
+    @Builder
+    public static class NewsResponseDto{
+        private String category;
+        private String title;
+        private String date;
+        private String content;
+        private String company;
+        private String shorts;
+        private String reporter;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class NewsApiResponseDto{
         private String status;
         private int totalResults;
