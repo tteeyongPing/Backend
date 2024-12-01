@@ -119,7 +119,7 @@ public class NewsDto {
         private Long newsId;
         private String title;
         private String date;
-        private String shorts;
+        private String content;
         private String reporter;
         private String company;
 
