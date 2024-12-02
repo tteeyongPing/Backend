@@ -12,5 +12,5 @@ public interface BookmarkService {
 
     void deleteNews(Long userId, List<BookmarkDto.BookmarkRequestDto> dtoList);
 
-    boolean checkSubscribe(Long userId, Long newsId);
+    boolean checkBookmark(Long userId, Long newsId);
 }

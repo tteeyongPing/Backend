@@ -65,7 +65,7 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
 
     @Override
-    public boolean checkSubscribe(Long userId, Long newsId) {
+    public boolean checkBookmark(Long userId, Long newsId) {
         return bookmarkQueryRepository.existsByUserIdAndNewsId(userId, newsId);
     }
 }
