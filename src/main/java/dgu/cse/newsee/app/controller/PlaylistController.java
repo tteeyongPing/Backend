@@ -84,4 +84,12 @@ public class PlaylistController {
         playlistService.subscribePlaylist(userId, playlistId);
         return ApiResponse.onSuccess(Status.SUBSCRIBE_SUCCESS, null);
     }
+
+    @Operation(summary = "플레이리스트 구독 취소하기")
+    @PostMapping("/subscribe/cancel")
+    public ApiResponse<?> subscribeCancelPlaylist(@RequestHeader("Authorization") String token, @RequestParam(value = "playlistId") Long playlistId){
+        Long userId = userAccountService.getUserIdFromToken(token);
+        playlistService.subscribeCancelPlaylist(userId, playlistId);
+        return ApiResponse.onSuccess(Status.SUBSCRIBE_CANCEL_SUCCESS, null);
+    }
 }

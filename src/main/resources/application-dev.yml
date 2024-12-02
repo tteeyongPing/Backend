@@ -9,6 +9,7 @@ spring:
     show-sql: false
     properties:
       hibernate:
+        ddl-auto: update
         dialect: org.hibernate.dialect.MySQLDialect
 
   jwt:
