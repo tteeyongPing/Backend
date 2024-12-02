@@ -46,7 +46,7 @@ public class NewsController {
 
         if(token != null) {
             Long userId = userAccountService.getUserIdFromToken(token);
-            isSubscribe = bookmarkService.checkSubscribe(userId, newsId);
+            isSubscribe = bookmarkService.checkBookmark(userId, newsId);
         }
 
         News news = newsService.getNewsShorts(newsId);
@@ -71,7 +71,7 @@ public class NewsController {
 
         if(token != null) {
             Long userId = userAccountService.getUserIdFromToken(token);
-            isSubscribe = bookmarkService.checkSubscribe(userId, newsId);
+            isSubscribe = bookmarkService.checkBookmark(userId, newsId);
         }
         News news = newsService.getNews(newsId);
         NewsDto.NewsResponseDto dto = NewsDto.NewsResponseDto.builder()

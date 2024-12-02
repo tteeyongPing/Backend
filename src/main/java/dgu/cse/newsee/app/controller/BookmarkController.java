@@ -45,4 +45,13 @@ public class BookmarkController {
         bookmarkService.deleteNews(userId, dtoList);
         return ApiResponse.onSuccess(Status.BOOKMARK_DELETE_SUCCESS, null);
     }
+
+    @Operation(summary = "북마크 여부 확인하기")
+    @GetMapping("/status")
+    public ApiResponse<?> getUserBookmarkStatus(@RequestHeader("Authorization") String token, @RequestParam(value = "newsId") Long newsId){
+        Long userId = userAccountService.getUserIdFromToken(token);
+        boolean isBookmark = bookmarkService.checkBookmark(userId, newsId);
+        return ApiResponse.onSuccess(Status.BOOKMARK_STATUS_SUCCESS, isBookmark);
+    }
+
 }
