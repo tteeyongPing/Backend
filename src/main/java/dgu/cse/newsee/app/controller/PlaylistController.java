@@ -94,7 +94,7 @@ public class PlaylistController {
     }
 
     @Operation(summary = "플레이리스트 구독 여부 확인하기")
-    @PostMapping("/subscribe/status")
+    @GetMapping("/subscribe/status")
     public ApiResponse<?> getUserSubscribeStatus(@RequestHeader("Authorization") String token, @RequestParam(value = "playlistId") Long playlistId){
         Long userId = userAccountService.getUserIdFromToken(token);
         boolean isSubscribe = playlistService.getUserSubscribeStatus(userId, playlistId);
