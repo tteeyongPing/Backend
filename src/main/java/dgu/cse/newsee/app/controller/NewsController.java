@@ -4,14 +4,13 @@ import dgu.cse.newsee.apiPayload.ApiResponse;
 import dgu.cse.newsee.apiPayload.Status;
 import dgu.cse.newsee.app.dto.NewsDto;
 import dgu.cse.newsee.domain.entity.News;
+import dgu.cse.newsee.service.bookmark.BookmarkService;
 import dgu.cse.newsee.service.news.NewsService;
+import dgu.cse.newsee.service.user.UserAccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +21,8 @@ import java.util.List;
 public class NewsController {
 
     private final NewsService newsService;
+    private final UserAccountService userAccountService;
+    private final BookmarkService bookmarkService;
 
     @Operation(summary = "전체 뉴스 가지고오기")
     @GetMapping("/list/all")
@@ -39,7 +40,15 @@ public class NewsController {
 
     @Operation(summary = "뉴스의 요약본 가지고오기")
     @GetMapping("/shorts")
-    public ApiResponse<?> getNewsShorts(@RequestParam(value = "newsId") Long newsId){
+    public ApiResponse<?> getNewsShorts(@RequestParam(value = "newsId") Long newsId, @RequestHeader(value = "Authorization", required = false) String token){
+
+        boolean isSubscribe = false;
+
+        if(token != null) {
+            Long userId = userAccountService.getUserIdFromToken(token);
+            isSubscribe = bookmarkService.checkSubscribe(userId, newsId);
+        }
+
         News news = newsService.getNewsShorts(newsId);
         NewsDto.NewsResponseDto dto = NewsDto.NewsResponseDto.builder()
                 .shorts(news.getShorts())
@@ -49,13 +58,21 @@ public class NewsController {
                 .category(news.getCategory())
                 .company(news.getCompany())
                 .content(news.getContent())
+                .isSubscribe(isSubscribe)
                 .build();
         return ApiResponse.onSuccess(Status.READ_NEWS_SHORTS_SUCCESS, dto);
     }
 
     @Operation(summary = "뉴스 본문 가져오기")
     @GetMapping("/contents")
-    public ApiResponse<?> getNewsContents(@RequestParam(value = "newsId") Long newsId){
+    public ApiResponse<?> getNewsContents(@RequestParam(value = "newsId") Long newsId, @RequestHeader(value = "Authorization", required = false) String token){
+
+        boolean isSubscribe = false;
+
+        if(token != null) {
+            Long userId = userAccountService.getUserIdFromToken(token);
+            isSubscribe = bookmarkService.checkSubscribe(userId, newsId);
+        }
         News news = newsService.getNews(newsId);
         NewsDto.NewsResponseDto dto = NewsDto.NewsResponseDto.builder()
                 .shorts(news.getShorts())
@@ -65,6 +82,7 @@ public class NewsController {
                 .category(news.getCategory())
                 .company(news.getCompany())
                 .content(news.getContent())
+                .isSubscribe(isSubscribe)
                 .build();
         return ApiResponse.onSuccess(Status.READ_NEWS_CONTENTS_SUCCESS, dto);
     }
