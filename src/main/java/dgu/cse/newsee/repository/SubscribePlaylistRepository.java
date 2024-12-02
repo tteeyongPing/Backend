@@ -10,4 +10,6 @@ public interface SubscribePlaylistRepository extends JpaRepository<SubscribePlay
     Optional<SubscribePlaylist> findByUserIdAndPlaylistId(Long userId, Long playlistId);
 
     Optional<List<SubscribePlaylist>> findAllByUserId(Long userId);
+
+    void deleteByUserIdAndPlaylistId(Long userId, Long playlistId);
 }

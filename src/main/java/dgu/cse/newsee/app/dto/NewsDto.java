@@ -44,6 +44,7 @@ public class NewsDto {
         private String company;
         private String shorts;
         private String reporter;
+        private boolean isSubscribe;
     }
 
     @Getter

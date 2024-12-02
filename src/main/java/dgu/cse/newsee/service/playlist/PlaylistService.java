@@ -21,4 +21,6 @@ public interface PlaylistService {
     List<PlaylistDto.getPlaylistResponseDto> getSubscribePlaylist(Long userId);
 
     void subscribePlaylist(Long userId, Long playlistId);
+
+    void subscribeCancelPlaylist(Long userId, Long playlistId);
 }

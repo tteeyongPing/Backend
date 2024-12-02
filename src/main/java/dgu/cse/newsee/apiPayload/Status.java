@@ -57,12 +57,14 @@ public enum Status {
     DELETE_PLAYLIST_SUCCESS("200", "SUCCESS", "해당 플레이리스트를 삭제했습니다."),
     MY_SUBSCRIBE_SUCCESS("200", "SUCCESS", "구독중인 플레이리스트를 가지고 왔습니다."),
     SUBSCRIBE_SUCCESS("200", "SUCCESS", "해당 플레이리스트를 구독했습니다."),
+    SUBSCRIBE_CANCEL_SUCCESS("200", "SUCCESS", "해당 플레이리스트의 구독을 취소했습니다."),
     PLAYLIST_NON_EXISTS("404", "FAILURE", "내 플레이리스트를 찾을 수 없습니다."),
     UNAUTHORIZED_PLAYLIST("403", "FAILURE", "사용자에게 속하지 않은 플레이리스트입니다."),
     NEW_NOT_FOUND_PLAYLIST("404", "FAILURE", "플레이리스트에 해당 뉴스가 존재하지 않습니다."),
     SUBSCRIBE_PLAYLIST_NON_EXISTS("404", "FAILURE", "구독중인 플레이리스트가 없습니다."),
     SUBSCRIBE_MY_PLAYLIST("403", "FAILURE", "내 플레이리스트를 구독할 수 없습니다."),
     ALREADY_SUBSCRIBED("409", "FAILURE", "이미 구독중인 플레이리스트입니다."),
+    NON_SUBSCRIBE_PLAYLIST("403", "FAILURE", "구독중인 플레이리스트가 아닙니다."),
 
     //serach관련
     NEWS_SEARCH_SUCCESS("200", "SUCCESS", "뉴스를 검색했습니다."),
