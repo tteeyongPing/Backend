@@ -49,7 +49,8 @@ public class PlaylistServiceImpl implements PlaylistService {
                                 newsItem.getNews().getTitle(),
                                 newsItem.getNews().getDate(),
                                 newsItem.getNews().getCompany(),
-                                newsItem.getNews().getCategory())
+                                newsItem.getNews().getCategory(),
+                                newsItem.getNews().getContent())
                 ).collect(Collectors.toList())
         )).collect(Collectors.toList());
     }
@@ -152,7 +153,8 @@ public class PlaylistServiceImpl implements PlaylistService {
                                             newsItem.getNews().getTitle(),
                                             newsItem.getNews().getDate(),
                                             newsItem.getNews().getCompany(),
-                                            newsItem.getNews().getCategory())
+                                            newsItem.getNews().getCategory(),
+                                            newsItem.getNews().getContent())
                             ).collect(Collectors.toList())
                     );
                 })
