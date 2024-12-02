@@ -80,6 +80,8 @@ public enum Status {
     CATEGORY_NOT_FOUND("404", "FAILURE", "카테고리가 존재하지 않습니다."),
 
     //alarm 관련
+    BANNER_ALARM_SUCCESS("200", "SUCCESS", "알림에 대한 뉴스를 가지고 왔습니다."),
+    BANNER_LIST_SUCCESS("200", "SUCCESS", "배너 리스트를 가지고 왔습니다."),
     ALARM_GET_SUCCESS("200", "SUCCESS", "내 알림을 가지고 왔습니다."),
     ALARM_CREATE_SUCCESS("200", "SUCCESS", "새로운 알림을 설정했습니다."),
     ALARM_EDIT_SUCCESS("200", "SUCCESS", "새로운 알림을 설정했습니다."),
