@@ -189,6 +189,17 @@ public class PlaylistServiceImpl implements PlaylistService {
         playlist.decrementSubscribers();
     }
 
+    @Override
+    public boolean getUserSubscribeStatus(Long userId, Long playlistId) {
+        Playlist playlist = getPlaylistById(playlistId);
+        Optional<SubscribePlaylist> existingSubscription = subscribePlaylistRepository.findByUserIdAndPlaylistId(userId, playlistId);
+
+        boolean isSubscribe = true;
+        if(existingSubscription.isEmpty()) isSubscribe = false;
+
+        return isSubscribe;
+    }
+
     // 해당 플레이리스트가 존재하는지 확인
     private Playlist getPlaylistById(Long playlistId){
         return playlistRepository.findById(playlistId)

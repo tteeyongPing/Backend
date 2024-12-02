@@ -23,4 +23,6 @@ public interface PlaylistService {
     void subscribePlaylist(Long userId, Long playlistId);
 
     void subscribeCancelPlaylist(Long userId, Long playlistId);
+
+    boolean getUserSubscribeStatus(Long userId, Long playlistId);
 }
