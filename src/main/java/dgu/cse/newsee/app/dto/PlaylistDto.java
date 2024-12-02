@@ -43,6 +43,7 @@ public class PlaylistDto {
         private String description;
         private Long userId;
         private String userName;
+        private int subscribers;
         private List<NewsDto> newsList;
     }
 

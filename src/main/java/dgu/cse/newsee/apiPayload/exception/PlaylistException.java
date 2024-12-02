@@ -20,6 +20,10 @@ public class PlaylistException extends RuntimeException {
         public SubscribePlaylistNonExistsException(String message) {super(message);}
     }
 
+    public static class NonSubscribePlaylistException extends PlaylistException{
+        public NonSubscribePlaylistException(String message) {super(message);}
+    }
+
     public static class SubscribeMyPlaylistException extends PlaylistException{
         public SubscribeMyPlaylistException(String message) {super(message);}
     }
