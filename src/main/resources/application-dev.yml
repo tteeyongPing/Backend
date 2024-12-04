@@ -5,8 +5,6 @@ spring:
     password: ${LOCAL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    generate-ddl: false
-    show-sql: false
     properties:
       hibernate:
         ddl-auto: update
@@ -28,3 +26,7 @@ gpt:
   gpt_secret_key : ${GPT_SECRET_KEY}
 
 
+#logging:
+#  level:
+#    org.hibernate.tool.schema: DEBUG
+#    org.hibernate: DEBUG

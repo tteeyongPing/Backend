@@ -1,10 +1,9 @@
 package dgu.cse.newsee.service.alarm;
 
 import dgu.cse.newsee.apiPayload.exception.AlarmException;
-import dgu.cse.newsee.apiPayload.exception.UserException;
 import dgu.cse.newsee.app.dto.AlarmDto.AlarmQueryDto;
 import dgu.cse.newsee.app.dto.AlarmDto;
-import dgu.cse.newsee.repository.UserRepository;
+import dgu.cse.newsee.domain.entity.User;
 import dgu.cse.newsee.app.dto.AlarmDto.AlarmRequestDto;
 import dgu.cse.newsee.domain.entity.Alarm;
 import dgu.cse.newsee.repository.AlarmRepository;
@@ -24,37 +23,38 @@ public class AlarmServiceImpl implements AlarmService {
 
     private final AlarmRepository alarmRepository;
     private final UserAccountService userAccountService;
-    private final UserRepository userRepository;
+
     @Override
     public List<AlarmQueryDto> getAlarms(String token) {
 
         Long userId = userAccountService.getUserIdFromToken(token);
         List<Alarm> alarms = alarmRepository.findByUserId(userId);
 
-        if (!userRepository.existsById(userId)) {
-            throw new UserException.UserNonExistsException("등록되지 않은 사용자입니다.");
-        }
         if (alarms.isEmpty()) {
             throw new AlarmException.AlarmNonExistsException("등록된 알림이 없습니다.");
         }
 
         return alarms.stream()
-                .map(alarm -> new AlarmQueryDto(alarm.getId(), alarm.getPeriod(), alarm.isActive(),alarm.getDay()))
+                .map(alarm -> new AlarmQueryDto(alarm.getId(), alarm.getPeriod(), alarm.isActive(), alarm.getDays()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void createAlarm(String token, AlarmRequestDto alarmDto) {
         Long userId = userAccountService.getUserIdFromToken(token);
-        if (!userRepository.existsById(userId)) {
-            throw new UserException.UserNonExistsException("등록되지 않은 사용자입니다.");
-        }
+        User user = userAccountService.findById(userId).get();
+
         for (String day : alarmDto.getDays()) {
             if (!List.of("월", "화", "수", "목", "금", "토", "일").contains(day)) {
                 throw new AlarmException.AlarmDayError("유효하지 않은 요일입니다");
             }
         }
-        Alarm alarm = new Alarm(userId, alarmDto.getPeriod(), alarmDto.isActive(), alarmDto.getDays());
+        Alarm alarm = Alarm.builder()
+                .active(alarmDto.isActive())
+                .days(alarmDto.getDays())
+                .period(alarmDto.getPeriod())
+                .user(user)
+                .build();
         alarmRepository.save(alarm);
     }
 
@@ -63,7 +63,7 @@ public class AlarmServiceImpl implements AlarmService {
         Long userId = userAccountService.getUserIdFromToken(token);
         Alarm alarm = alarmRepository.findById(alarmDto.getAlarmId())
                 .orElseThrow(() -> new AlarmException.AlarmNonExistsException("해당 알림이 없습니다."));
-        if (!alarm.getUserId().equals(userId)) {
+        if (!alarm.getUser().getId().equals(userId)) {
             throw new SecurityException("수정 권한이 없습니다.");
         }
         for (String day : alarmDto.getDays()) {
@@ -82,7 +82,7 @@ public class AlarmServiceImpl implements AlarmService {
         Long userId = userAccountService.getUserIdFromToken(token);
         Alarm alarm = alarmRepository.findById(alarmId)
                 .orElseThrow(() -> new AlarmException.AlarmNonExistsException("해당 알림이 없습니다."));
-        if (!alarm.getUserId().equals(userId)) {
+        if (!alarm.getUser().getId().equals(userId)) {
             throw new SecurityException("삭제 권한이 없습니다.");
         }
         alarmRepository.delete(alarm);

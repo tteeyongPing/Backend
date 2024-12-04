@@ -35,6 +35,9 @@ public class News {
     @Column(nullable = false, length = 256)
     private String reporter;
 
+    @Column(nullable = false)
+    private String link;
+
     public void setShorts(String shorts) {
         this.shorts = shorts;
     }
