@@ -39,9 +39,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> getUserCategories(String token) {
         Long userId = userAccountService.getUserIdFromToken(token);
-        if (!userRepository.existsById(userId)) {
-            throw new UserException.UserNonExistsException("등록되지 않은 사용자입니다.");
-        }
 
         // 엔티티에서 카테고리 이름만 추출
         return userCategoryRepository.findByUserId(userId).stream()
@@ -54,9 +51,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public void updateUserCategories(String token, List<Category> categories) {
         Long userId = userAccountService.getUserIdFromToken(token);
-        if (!userRepository.existsById(userId)) {
-            throw new UserException.UserNonExistsException("등록되지 않은 사용자입니다.");
-        }
 
         // 기존 관심분야 삭제
         userCategoryRepository.deleteByUserId(userId);
