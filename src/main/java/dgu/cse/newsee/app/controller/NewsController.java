@@ -58,6 +58,7 @@ public class NewsController {
                 .category(news.getCategory())
                 .company(news.getCompany())
                 .content(news.getContent())
+                .link(news.getLink())
                 .isSubscribe(isSubscribe)
                 .build();
         return ApiResponse.onSuccess(Status.READ_NEWS_SHORTS_SUCCESS, dto);
@@ -82,6 +83,7 @@ public class NewsController {
                 .category(news.getCategory())
                 .company(news.getCompany())
                 .content(news.getContent())
+                .link(news.getLink())
                 .isSubscribe(isSubscribe)
                 .build();
         return ApiResponse.onSuccess(Status.READ_NEWS_CONTENTS_SUCCESS, dto);
