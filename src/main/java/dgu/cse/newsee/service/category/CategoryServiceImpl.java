@@ -62,4 +62,12 @@ public class CategoryServiceImpl implements CategoryService {
 
         userCategoryRepository.saveAll(userCategories);
     }
+
+    @Override
+    public List<Category> getCategoriesByUserId(Long userId) {
+        return userCategoryRepository.findByUserId(userId).stream()
+                .map(userCategory -> Category.fromName(userCategory.getCategory()))
+                .collect(Collectors.toList());
+    }
+
 }
