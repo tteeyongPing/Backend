@@ -55,11 +55,9 @@ public class NewsDataFetchServiceImpl implements NewsFetchService{
             NewsDto.NewsDataApiResponse response = restTemplate.getForObject(uri, NewsDto.NewsDataApiResponse.class);
 
             if (response == null || !response.getStatus().equals("success")) {
-                System.err.println("Failed to fetch news for category: " + category);
                 continue;
             }
             if (response.getTotalResults() == 0) {
-                System.out.println("No news available for category: " + category);
                 continue;
             }
 

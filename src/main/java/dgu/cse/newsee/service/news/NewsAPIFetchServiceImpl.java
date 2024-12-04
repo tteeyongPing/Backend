@@ -52,19 +52,16 @@ public class NewsAPIFetchServiceImpl implements NewsFetchService{
 
             NewsDto.NewsApiResponseDto response = restTemplate.getForObject(uri, NewsDto.NewsApiResponseDto.class);
             if (response == null || !response.getStatus().equals("ok")) {
-                System.err.println("Failed to fetch news for category: " + category);
                 continue;
             }
 
             if (response.getTotalResults() == 0) {
-                System.out.println("No news available for category: " + category);
                 continue;
             }
 
             List<NewsDto.NewsApiResponseDto.Article> articles = response.getArticles();
 
             if (articles == null || articles.isEmpty()) {
-                System.out.println("Empty!!!! ");
                 continue;
             }
 
@@ -88,7 +85,6 @@ public class NewsAPIFetchServiceImpl implements NewsFetchService{
                         .link(article.getUrl())
                         .build();
                 saveNews(dto);
-                System.out.println(dto.getTitle());
             });
         }
         redisService.setKeyWithExpiry(NEWS_FETCH_KEY, "true", DateUtil.getDurationUntilMidnight());
