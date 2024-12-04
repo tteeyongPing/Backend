@@ -33,7 +33,7 @@ public class NewsAPIFetchServiceImpl implements NewsFetchService{
 
     @Override
     public boolean hasFetchedToday() {
-        return redisService.hasKey(NEWS_FETCH_KEY);
+        return redisService.hasFetchedToday(NEWS_FETCH_KEY);
     }
 
     @Override
@@ -85,6 +85,7 @@ public class NewsAPIFetchServiceImpl implements NewsFetchService{
                         .reporter(article.getAuthor())
                         .category(Category.getKoreanByEnglish(category))
                         .date(DateUtil.extractDate(article.getPublishedAt()))
+                        .link(article.getUrl())
                         .build();
                 saveNews(dto);
                 System.out.println(dto.getTitle());
@@ -102,6 +103,7 @@ public class NewsAPIFetchServiceImpl implements NewsFetchService{
                 .company(dto.getCompany())
                 .content(dto.getContent())
                 .reporter(dto.getReporter())
+                .link(dto.getLink())
                 .build();
         newsRepository.save(news);
     }

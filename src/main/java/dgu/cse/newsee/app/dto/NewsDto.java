@@ -17,6 +17,7 @@ public class NewsDto {
     private String company;
     private String shorts;
     private String reporter;
+    private String link;
 
     @Getter
     @AllArgsConstructor
@@ -30,6 +31,7 @@ public class NewsDto {
         private String company;
         private String shorts;
         private String reporter;
+        private String link;
     }
 
     @Getter
@@ -44,6 +46,7 @@ public class NewsDto {
         private String company;
         private String shorts;
         private String reporter;
+        private String link;
         private boolean isSubscribe;
     }
 
@@ -63,6 +66,7 @@ public class NewsDto {
             private String author;
             private String title;
             private String description;
+            private String url;
             private String urlToImage;
             private String publishedAt;
             private String content;
