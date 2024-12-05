@@ -178,7 +178,6 @@ public class PlaylistServiceImpl implements PlaylistService {
         playlist.incrementSubscribers();
     }
 
-
     @Override
     public void subscribeCancelPlaylist(Long userId, Long playlistId) {
         Playlist playlist = getPlaylistById(playlistId);
@@ -201,11 +200,9 @@ public class PlaylistServiceImpl implements PlaylistService {
         return isSubscribe;
     }
     @Override
-    public PlaylistDto.getPlaylistResponseDto getPlaylistById(Long userId, Long playlistId) {
+    public PlaylistDto.getPlaylistResponseDto getPlaylistByPlaylistId(Long userId, Long playlistId) {
         Playlist playlist = getPlaylistById(playlistId); // Playlist 존재 여부 확인
-        if (!playlist.getUser().getId().equals(userId)) {
-            throw new PlaylistException.UnauthorizedPlaylistException("사용자에게 속하지 않은 플레이리스트입니다.");
-        }
+
 
         return new PlaylistDto.getPlaylistResponseDto(
                 playlist.getId(),
