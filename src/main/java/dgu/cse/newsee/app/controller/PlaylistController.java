@@ -101,7 +101,7 @@ public class PlaylistController {
         return ApiResponse.onSuccess(Status.SUBSCRIBE_STATUS_SUCCESS, isSubscribe);
     }
     @Operation(summary = "플레이리스트 ID로 플레이리스트 반환하기")
-    @GetMapping("/playlistId")
+    @GetMapping("/{playlistId}")
     public ApiResponse<?> getPlaylistById(
             @RequestHeader("Authorization") String token,
             @PathVariable Long playlistId) {
