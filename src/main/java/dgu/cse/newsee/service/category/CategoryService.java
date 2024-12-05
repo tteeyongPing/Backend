@@ -8,4 +8,5 @@ public interface CategoryService {
     public List<Category> getAllCategories();
     List<Category> getUserCategories(String token);
     void updateUserCategories(String token, List<Category> categories);
+    List<Category> getCategoriesByUserId(Long userId);
 }

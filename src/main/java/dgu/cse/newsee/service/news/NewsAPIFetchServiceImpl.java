@@ -33,7 +33,7 @@ public class NewsAPIFetchServiceImpl implements NewsFetchService{
 
     @Override
     public boolean hasFetchedToday() {
-        return redisService.hasKey(NEWS_FETCH_KEY);
+        return redisService.hasFetchedToday(NEWS_FETCH_KEY);
     }
 
     @Override
@@ -52,19 +52,16 @@ public class NewsAPIFetchServiceImpl implements NewsFetchService{
 
             NewsDto.NewsApiResponseDto response = restTemplate.getForObject(uri, NewsDto.NewsApiResponseDto.class);
             if (response == null || !response.getStatus().equals("ok")) {
-                System.err.println("Failed to fetch news for category: " + category);
                 continue;
             }
 
             if (response.getTotalResults() == 0) {
-                System.out.println("No news available for category: " + category);
                 continue;
             }
 
             List<NewsDto.NewsApiResponseDto.Article> articles = response.getArticles();
 
             if (articles == null || articles.isEmpty()) {
-                System.out.println("Empty!!!! ");
                 continue;
             }
 
@@ -85,9 +82,9 @@ public class NewsAPIFetchServiceImpl implements NewsFetchService{
                         .reporter(article.getAuthor())
                         .category(Category.getKoreanByEnglish(category))
                         .date(DateUtil.extractDate(article.getPublishedAt()))
+                        .link(article.getUrl())
                         .build();
                 saveNews(dto);
-                System.out.println(dto.getTitle());
             });
         }
         redisService.setKeyWithExpiry(NEWS_FETCH_KEY, "true", DateUtil.getDurationUntilMidnight());
@@ -102,6 +99,7 @@ public class NewsAPIFetchServiceImpl implements NewsFetchService{
                 .company(dto.getCompany())
                 .content(dto.getContent())
                 .reporter(dto.getReporter())
+                .link(dto.getLink())
                 .build();
         newsRepository.save(news);
     }

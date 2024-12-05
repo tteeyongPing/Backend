@@ -9,6 +9,15 @@ import java.util.List;
 
 public class NewsDto {
 
+    private Long newsId;
+    private String category;
+    private String title;
+    private String date;
+    private String content;
+    private String company;
+    private String shorts;
+    private String reporter;
+
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
@@ -21,6 +30,40 @@ public class NewsDto {
         private String company;
         private String shorts;
         private String reporter;
+        private String link;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    public static class NewsResponseDto{
+        private String category;
+        private String title;
+        private String date;
+        private String content;
+        private String company;
+        private String shorts;
+        private String reporter;
+        private String link;
+        private boolean isSubscribe;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    public static class NewsAlarmResponseDto{
+        private Long id;
+        private String category;
+        private String title;
+        private String date;
+        private String content;
+        private String company;
+        private String shorts;
+        private String reporter;
+        private String link;
+        private boolean isSubscribe;
     }
 
     @Getter
@@ -39,6 +82,7 @@ public class NewsDto {
             private String author;
             private String title;
             private String description;
+            private String url;
             private String urlToImage;
             private String publishedAt;
             private String content;

@@ -1,0 +1,39 @@
+server:
+  port: 8080
+  ssl:
+    enabled: false
+#    key-store: classpath:keystore.p12
+#    key-store-type: PKCS12
+#    key-store-password: ${KEY_STORE_PASSWORD}
+
+spring:
+  datasource:
+    url: ${MYSQL_PROD_URL}
+    username: ${MYSQL_PROD_USERNAME}
+    password: ${MYSQL_PROD_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: false
+    properties:
+      hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.MySQLDialect
+  jwt:
+    secret: ${JWT_SECRET_KEY}
+  data:
+    redis:
+      host: 175.106.98.93
+      port: 6379
+
+security:
+  kakao:
+    client_id: ${CLIENT_ID}
+    redirect_uri: ${REDIRECT_URI}
+
+news:
+  news_api_key: ${NEWS_API_KEY}
+  newsdata_api_key : ${NEWSDATA_API_KEY}
+
+gpt:
+  gpt_secret_key : ${GPT_SECRET_KEY}

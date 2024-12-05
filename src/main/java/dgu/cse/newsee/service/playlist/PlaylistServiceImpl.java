@@ -42,12 +42,15 @@ public class PlaylistServiceImpl implements PlaylistService {
                 playlist.getDescription(),
                 playlist.getUser().getId(),
                 playlist.getUser().getName(),
+                playlist.getSubscribers(),
                 playlist.getPlaylistNews().stream().map(newsItem ->
                         new PlaylistDto.NewsDto(
                                 newsItem.getNews().getId(),
                                 newsItem.getNews().getTitle(),
                                 newsItem.getNews().getDate(),
-                                newsItem.getNews().getCompany())
+                                newsItem.getNews().getCompany(),
+                                newsItem.getNews().getCategory(),
+                                newsItem.getNews().getContent())
                 ).collect(Collectors.toList())
         )).collect(Collectors.toList());
     }
@@ -143,12 +146,15 @@ public class PlaylistServiceImpl implements PlaylistService {
                             playlist.getDescription(),
                             playlist.getUser().getId(),
                             playlist.getUser().getName(),
+                            playlist.getSubscribers(),
                             playlist.getPlaylistNews().stream().map(newsItem ->
                                     new PlaylistDto.NewsDto(
                                             newsItem.getNews().getId(),
                                             newsItem.getNews().getTitle(),
                                             newsItem.getNews().getDate(),
-                                            newsItem.getNews().getCompany())
+                                            newsItem.getNews().getCompany(),
+                                            newsItem.getNews().getCategory(),
+                                            newsItem.getNews().getContent())
                             ).collect(Collectors.toList())
                     );
                 })
@@ -169,6 +175,30 @@ public class PlaylistServiceImpl implements PlaylistService {
                 .build();
 
         subscribePlaylistRepository.save(subscribePlaylist);
+        playlist.incrementSubscribers();
+    }
+
+
+    @Override
+    public void subscribeCancelPlaylist(Long userId, Long playlistId) {
+        Playlist playlist = getPlaylistById(playlistId);
+        Optional<SubscribePlaylist> existingSubscription = subscribePlaylistRepository.findByUserIdAndPlaylistId(userId, playlistId);
+
+        if(existingSubscription.isEmpty()) throw new PlaylistException.NonSubscribePlaylistException("구독중인 플레이리스트가 아닙니다.");
+
+        subscribePlaylistRepository.deleteByUserIdAndPlaylistId(userId, playlistId);
+        playlist.decrementSubscribers();
+    }
+
+    @Override
+    public boolean getUserSubscribeStatus(Long userId, Long playlistId) {
+        Playlist playlist = getPlaylistById(playlistId);
+        Optional<SubscribePlaylist> existingSubscription = subscribePlaylistRepository.findByUserIdAndPlaylistId(userId, playlistId);
+
+        boolean isSubscribe = true;
+        if(existingSubscription.isEmpty()) isSubscribe = false;
+
+        return isSubscribe;
     }
     @Override
     public PlaylistDto.getPlaylistResponseDto getPlaylistById(Long userId, Long playlistId) {
@@ -183,12 +213,15 @@ public class PlaylistServiceImpl implements PlaylistService {
                 playlist.getDescription(),
                 playlist.getUser().getId(),
                 playlist.getUser().getName(),
+                playlist.getSubscribers(),
                 playlist.getPlaylistNews().stream().map(newsItem ->
                         new PlaylistDto.NewsDto(
                                 newsItem.getNews().getId(),
                                 newsItem.getNews().getTitle(),
                                 newsItem.getNews().getDate(),
-                                newsItem.getNews().getCompany())
+                                newsItem.getNews().getCompany(),
+                                newsItem.getNews().getCategory(),
+                                newsItem.getNews().getContent())
                 ).collect(Collectors.toList())
         );
     }
