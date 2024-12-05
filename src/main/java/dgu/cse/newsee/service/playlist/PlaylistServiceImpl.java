@@ -199,6 +199,32 @@ public class PlaylistServiceImpl implements PlaylistService {
 
         return isSubscribe;
     }
+    @Override
+    public PlaylistDto.getPlaylistResponseDto getPlaylistById(Long userId, Long playlistId) {
+        Playlist playlist = getPlaylistById(playlistId); // Playlist 존재 여부 확인
+        if (!playlist.getUser().getId().equals(userId)) {
+            throw new PlaylistException.UnauthorizedPlaylistException("사용자에게 속하지 않은 플레이리스트입니다.");
+        }
+
+        return new PlaylistDto.getPlaylistResponseDto(
+                playlist.getId(),
+                playlist.getName(),
+                playlist.getDescription(),
+                playlist.getUser().getId(),
+                playlist.getUser().getName(),
+                playlist.getSubscribers(),
+                playlist.getPlaylistNews().stream().map(newsItem ->
+                        new PlaylistDto.NewsDto(
+                                newsItem.getNews().getId(),
+                                newsItem.getNews().getTitle(),
+                                newsItem.getNews().getDate(),
+                                newsItem.getNews().getCompany(),
+                                newsItem.getNews().getCategory(),
+                                newsItem.getNews().getContent())
+                ).collect(Collectors.toList())
+        );
+    }
+
 
     // 해당 플레이리스트가 존재하는지 확인
     private Playlist getPlaylistById(Long playlistId){
