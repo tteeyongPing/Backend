@@ -23,8 +23,9 @@ public class NewsRedisServiceImpl implements NewsRedisService{
     }
 
     @Override
-    public boolean hasKey(String key) {
-        return redisTemplate.hasKey(key);
+    public boolean hasFetchedToday(String key) {
+        String value = getKey(key);
+        return "true".equalsIgnoreCase(value); // 기본값 false
     }
 
     @Override

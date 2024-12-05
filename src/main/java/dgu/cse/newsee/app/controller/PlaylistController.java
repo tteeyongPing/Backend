@@ -84,4 +84,30 @@ public class PlaylistController {
         playlistService.subscribePlaylist(userId, playlistId);
         return ApiResponse.onSuccess(Status.SUBSCRIBE_SUCCESS, null);
     }
+
+    @Operation(summary = "플레이리스트 구독 취소하기")
+    @PostMapping("/subscribe/cancel")
+    public ApiResponse<?> subscribeCancelPlaylist(@RequestHeader("Authorization") String token, @RequestParam(value = "playlistId") Long playlistId){
+        Long userId = userAccountService.getUserIdFromToken(token);
+        playlistService.subscribeCancelPlaylist(userId, playlistId);
+        return ApiResponse.onSuccess(Status.SUBSCRIBE_CANCEL_SUCCESS, null);
+    }
+
+    @Operation(summary = "플레이리스트 구독 여부 확인하기")
+    @GetMapping("/subscribe/status")
+    public ApiResponse<?> getUserSubscribeStatus(@RequestHeader("Authorization") String token, @RequestParam(value = "playlistId") Long playlistId){
+        Long userId = userAccountService.getUserIdFromToken(token);
+        boolean isSubscribe = playlistService.getUserSubscribeStatus(userId, playlistId);
+        return ApiResponse.onSuccess(Status.SUBSCRIBE_STATUS_SUCCESS, isSubscribe);
+    }
+    @Operation(summary = "플레이리스트 ID로 플레이리스트 반환하기")
+    @GetMapping("/{playlistId}")
+    public ApiResponse<?> getPlaylistById(
+            @RequestHeader("Authorization") String token,
+            @PathVariable Long playlistId) {
+        Long userId = userAccountService.getUserIdFromToken(token);
+        PlaylistDto.getPlaylistResponseDto playlist = playlistService.getPlaylistById(userId, playlistId);
+        return ApiResponse.onSuccess(Status.GET_PLAYLIST_SUCCESS, playlist);
+    }
+
 }

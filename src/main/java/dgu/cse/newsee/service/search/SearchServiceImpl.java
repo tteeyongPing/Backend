@@ -47,12 +47,15 @@ public class SearchServiceImpl implements SearchService {
                         playlist.getDescription(),
                         playlist.getUser().getId(),
                         playlist.getUser().getName(),
+                        playlist.getSubscribers(),
                         playlist.getPlaylistNews().stream()
                                 .map(playlistNews -> new PlaylistDto.NewsDto(
                                         playlistNews.getNews().getId(),
                                         playlistNews.getNews().getTitle(),
                                         playlistNews.getNews().getDate(),
-                                        playlistNews.getNews().getCompany()
+                                        playlistNews.getNews().getCompany(),
+                                        playlistNews.getNews().getCompany(),
+                                        playlistNews.getNews().getContent()
                                 ))
                                 .collect(Collectors.toList())
                 ))

@@ -5,6 +5,7 @@ import dgu.cse.newsee.app.dto.BookmarkDto;
 import dgu.cse.newsee.domain.entity.Bookmark;
 import dgu.cse.newsee.domain.entity.News;
 import dgu.cse.newsee.domain.entity.User;
+import dgu.cse.newsee.repository.BookmarkQueryRepository;
 import dgu.cse.newsee.repository.BookmarkRepository;
 import dgu.cse.newsee.repository.NewsQueryRepository;
 import dgu.cse.newsee.service.news.NewsService;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
 public class BookmarkServiceImpl implements BookmarkService {
 
     private final BookmarkRepository bookmarkRepository;
+    private final BookmarkQueryRepository bookmarkQueryRepository;
     private final NewsQueryRepository newsQueryRepository;
     private final NewsService newsService;
     private final UserAccountService userAccountService;
@@ -59,5 +62,10 @@ public class BookmarkServiceImpl implements BookmarkService {
             throw new BookmarkException.BookmarkNonExistsException("삭제할 북마크가 존재하지 않습니다.");
         }
         bookmarkRepository.deleteAll(bookmarksToDelete);
+    }
+
+    @Override
+    public boolean checkBookmark(Long userId, Long newsId) {
+        return bookmarkQueryRepository.existsByUserIdAndNewsId(userId, newsId);
     }
 }

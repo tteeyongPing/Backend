@@ -30,6 +30,11 @@ public class PlaylistExceptionHandler {
         return new ResponseEntity<>(ApiResponse.onFailure(Status.SUBSCRIBE_PLAYLIST_NON_EXISTS), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(PlaylistException.NonSubscribePlaylistException.class)
+    public ResponseEntity<ApiResponse<?>> handleNonSubscribePlaylistException(PlaylistException.NonSubscribePlaylistException ex){
+        return new ResponseEntity<>(ApiResponse.onFailure(Status.NON_SUBSCRIBE_PLAYLIST), HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(PlaylistException.SubscribeMyPlaylistException.class)
     public ResponseEntity<ApiResponse<?>> handleSubscribeMyPlaylistException(PlaylistException.SubscribeMyPlaylistException ex){
         return new ResponseEntity<>(ApiResponse.onFailure(Status.SUBSCRIBE_MY_PLAYLIST), HttpStatus.NOT_FOUND);

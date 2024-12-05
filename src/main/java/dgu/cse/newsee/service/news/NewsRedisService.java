@@ -8,7 +8,7 @@ public interface NewsRedisService {
 
     String getKey(String key);
 
-    boolean hasKey(String key);
+    boolean hasFetchedToday(String key);
 
     void deleteKey(String key);
 }

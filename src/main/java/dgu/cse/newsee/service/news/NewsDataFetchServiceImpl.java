@@ -1,6 +1,5 @@
 package dgu.cse.newsee.service.news;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import dgu.cse.newsee.app.dto.NewsDto;
 import dgu.cse.newsee.domain.entity.News;
 import dgu.cse.newsee.domain.enums.Category;
@@ -14,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,7 +34,7 @@ public class NewsDataFetchServiceImpl implements NewsFetchService{
 
     @Override
     public boolean hasFetchedToday() {
-        return redisService.hasKey(NEWS_FETCH_KEY);
+        return redisService.hasFetchedToday(NEWS_FETCH_KEY);
     }
 
     @Override
@@ -57,11 +55,9 @@ public class NewsDataFetchServiceImpl implements NewsFetchService{
             NewsDto.NewsDataApiResponse response = restTemplate.getForObject(uri, NewsDto.NewsDataApiResponse.class);
 
             if (response == null || !response.getStatus().equals("success")) {
-                System.err.println("Failed to fetch news for category: " + category);
                 continue;
             }
             if (response.getTotalResults() == 0) {
-                System.out.println("No news available for category: " + category);
                 continue;
             }
 
@@ -87,6 +83,7 @@ public class NewsDataFetchServiceImpl implements NewsFetchService{
                         .reporter(article.getCreator().toString())
                         .category(Category.getKoreanByEnglish(article.getCategory().get(0)))
                         .date(DateUtil.extractDateFromCustomFormat(article.getPubDate()))
+                        .link(article.getLink())
                         .build();
                 saveNews(dto);
             });
@@ -103,6 +100,7 @@ public class NewsDataFetchServiceImpl implements NewsFetchService{
                 .company(dto.getCompany())
                 .content(dto.getContent())
                 .reporter(dto.getReporter())
+                .link(dto.getLink())
                 .build();
         newsRepository.save(news);
     }

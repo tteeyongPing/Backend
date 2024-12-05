@@ -1,6 +1,5 @@
 package dgu.cse.newsee.domain.entity;
 
-import dgu.cse.newsee.domain.enums.Category;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,6 +34,9 @@ public class News {
 
     @Column(nullable = false, length = 256)
     private String reporter;
+
+    @Column(nullable = false)
+    private String link;
 
     public void setShorts(String shorts) {
         this.shorts = shorts;
