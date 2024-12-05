@@ -1,7 +1,6 @@
 package dgu.cse.newsee.service.playlist;
 
 import dgu.cse.newsee.app.dto.PlaylistDto;
-import dgu.cse.newsee.domain.entity.Playlist;
 
 import java.util.List;
 
@@ -25,4 +24,7 @@ public interface PlaylistService {
     void subscribeCancelPlaylist(Long userId, Long playlistId);
 
     boolean getUserSubscribeStatus(Long userId, Long playlistId);
+
+    PlaylistDto.getPlaylistResponseDto getPlaylistById(Long userId, Long playlistId);
+
 }
