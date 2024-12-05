@@ -25,6 +25,6 @@ public interface PlaylistService {
 
     boolean getUserSubscribeStatus(Long userId, Long playlistId);
 
-    PlaylistDto.getPlaylistResponseDto getPlaylistById(Long userId, Long playlistId);
+    PlaylistDto.getPlaylistResponseDto getPlaylistByPlaylistId(Long userId, Long playlistId);
 
 }
