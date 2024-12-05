@@ -15,7 +15,7 @@ public class AlarmDto {
 
         private String period;
         private boolean active;
-        private List<String> days;
+        private List<String> days; // 변경된 부분
 
 
     }
@@ -26,7 +26,7 @@ public class AlarmDto {
         private Long alarmId;
         private String period;
         private boolean active;
-        private List<String> days;
+        private List<String> days; // 변경된 부분
 
         public Long getAlarmId() {
             return alarmId;
