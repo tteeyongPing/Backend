@@ -106,7 +106,7 @@ public class PlaylistController {
             @RequestHeader("Authorization") String token,
             @PathVariable Long playlistId) {
         Long userId = userAccountService.getUserIdFromToken(token);
-        PlaylistDto.getPlaylistResponseDto playlist = playlistService.getPlaylistById(userId, playlistId);
+        PlaylistDto.getPlaylistResponseDto playlist = playlistService.getPlaylistByPlaylistId(userId, playlistId);
         return ApiResponse.onSuccess(Status.GET_PLAYLIST_SUCCESS, playlist);
     }
 

@@ -17,7 +17,6 @@ public class NewsDto {
     private String company;
     private String shorts;
     private String reporter;
-    private String link;
 
     @Getter
     @AllArgsConstructor

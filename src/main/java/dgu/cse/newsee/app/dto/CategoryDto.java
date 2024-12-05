@@ -12,12 +12,5 @@ public class CategoryDto {
         this.categoryName = category.name();
     }
 
-    // Getter
-    public int getCategoryId() {
-        return id;
-    }
 
-    public String getCategoryName() {
-        return categoryName;
-    }
 }
