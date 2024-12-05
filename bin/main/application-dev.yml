@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/newsee
+    username: ${LOCAL_USERNAME}
+    password: ${LOCAL_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  jwt:
+    secret: ${JWT_SECRET_KEY}
+
+security:
+  kakao:
+    client_id: ${CLIENT_ID}
+    redirect_uri: ${REDIRECT_URI}
+
+news:
+  news_api_key: ${NEWS_API_KEY}
+  newsdata_api_key : ${NEWSDATA_API_KEY}
+
+gpt:
+  gpt_secret_key : ${GPT_SECRET_KEY}
+
+
+#logging:
+#  level:
+#    org.hibernate.tool.schema: DEBUG
+#    org.hibernate: DEBUG

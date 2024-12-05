@@ -67,7 +67,7 @@ public enum Status {
     ALREADY_SUBSCRIBED("409", "FAILURE", "이미 구독중인 플레이리스트입니다."),
     NON_SUBSCRIBE_PLAYLIST("403", "FAILURE", "구독중인 플레이리스트가 아닙니다."),
     SUBSCRIBE_STATUS_SUCCESS("200", "SUCCESS", "해당 플레이리스트에 대한 구독 여부를 가지고 왔습니다."),
-
+    GET_PLAYLIST_SUCCESS("200", "SUCCESS", "해당 플레이리스트에 대한 정보를 가지고 왔습니다."),
     //serach관련
     NEWS_SEARCH_SUCCESS("200", "SUCCESS", "뉴스를 검색했습니다."),
     PLAYLIST_SEARCH_SUCCESS("200", "SUCCESS", "플레이리스트를 검색했습니다."),
