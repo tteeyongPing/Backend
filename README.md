@@ -126,12 +126,6 @@ Newsee는 1일 1뉴스가 가능하도록 알림을 보내주는 앱 서비스�
 
 <br>
 
-## 5. Clean Code
-#### SonarQube
-(작성중)
-
-<br>
-
 
 ## 📪 개발 문서
 [🔗 API 명세서 확인](https://proysm.notion.site/API-152b4ca715b080569c55debdad2cf031 "API 명세서")
